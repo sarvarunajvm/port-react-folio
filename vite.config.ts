@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => ({
       }),
   ].filter(Boolean),
 
-  base: process.env.BASE_URL ?? (mode === 'production' ? '/port-vue-folio/' : '/'),
+  base: process.env.BASE_URL ?? (mode === 'production' ? '/port-react-folio/' : '/'),
 
   build: {
     outDir: 'dist',
