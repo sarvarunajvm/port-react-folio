@@ -1,0 +1,23 @@
+{
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "chore", "hidden": false, "section": "Chores" },
+    { "type": "docs", "hidden": false, "section": "Documentation" },
+    { "type": "style", "hidden": false, "section": "Styles" },
+    { "type": "refactor", "hidden": false, "section": "Code Refactoring" },
+    { "type": "perf", "hidden": false, "section": "Performance Improvements" },
+    { "type": "test", "hidden": false, "section": "Tests" },
+    { "type": "build", "hidden": false, "section": "Build System" },
+    { "type": "ci", "hidden": false, "section": "Continuous Integration" }
+  ],
+  "commitUrlFormat": "https://github.com/sarvarunajvm/port-react-folio/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/sarvarunajvm/port-react-folio/compare/{{previousTag}}...{{currentTag}}",
+  "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
+  "skip": {
+    "bump": false,
+    "changelog": false,
+    "commit": false,
+    "tag": false
+  }
+}
