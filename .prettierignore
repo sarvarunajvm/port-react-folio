@@ -1,7 +1,0 @@
-dist
-build
-coverage
-.git
-node_modules
-package-lock.json
-*.md
