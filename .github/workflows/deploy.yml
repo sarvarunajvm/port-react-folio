@@ -2,7 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [main]
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -29,30 +31,23 @@ jobs:
         with:
           node-version: 20
 
-      - name: Enable pnpm (via corepack)
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.12.0 --activate
-          pnpm --version
-
-      - name: Cache pnpm store
+      - name: Cache npm modules
         uses: actions/cache@v3
         with:
-          path: ~/.local/share/pnpm/store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml', 'package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
-        # allow absence of a committed pnpm-lock.yaml on first run
-        run: pnpm install --no-frozen-lockfile
+        run: npm ci
 
       - name: Build
         env:
           NODE_ENV: production
-          BASE_URL: /port-vue-folio/
+          BASE_URL: /port-react-folio/
         run: |
-          pnpm run build
+          npm run build
           cp dist/index.html dist/404.html
 
       - name: Setup Pages
