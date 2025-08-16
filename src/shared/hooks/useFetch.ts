@@ -149,6 +149,7 @@ export function useFetch<T = unknown>(
     return () => {
       abortControllerRef.current?.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return { ...state, refetch };

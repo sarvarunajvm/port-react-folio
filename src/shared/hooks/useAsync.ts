@@ -116,6 +116,7 @@ export function useAsync<T = unknown>(
       isMountedRef.current = false;
       abortControllerRef.current?.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

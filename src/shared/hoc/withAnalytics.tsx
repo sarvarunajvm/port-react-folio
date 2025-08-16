@@ -152,7 +152,8 @@ export function withAnalytics<P extends object>(
 
       return () => {
         if (trackUnmount) {
-          const mountDuration = Date.now() - mountTimeRef.current;
+          const mountTime = mountTimeRef.current;
+          const mountDuration = Date.now() - mountTime;
           analyticsService.track({
             category: eventCategory,
             action: 'unmount',

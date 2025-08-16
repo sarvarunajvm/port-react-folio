@@ -142,7 +142,7 @@ export function withAccessibility<P extends object>(
         container.addEventListener('keydown', handleTabKey);
         return () => container.removeEventListener('keydown', handleTabKey);
       }
-    }, [focusTrap, enableFocusManagement]);
+    }, [focusTrap]);
 
     // Screen reader announcements
     useEffect(() => {
@@ -162,7 +162,7 @@ export function withAccessibility<P extends object>(
       }
 
       previousPropsRef.current = props;
-    }, [props, announceOnMount, announceOnChange, enableScreenReaderAnnouncements]);
+    }, [props]);
 
     // Keyboard navigation handlers
     useEffect(() => {
@@ -193,7 +193,7 @@ export function withAccessibility<P extends object>(
       if (downPressed || rightPressed) {
         navigateElements('next');
       }
-    }, [upPressed, downPressed, leftPressed, rightPressed, enableKeyboardNavigation]);
+    }, [upPressed, downPressed, leftPressed, rightPressed]);
 
     // Escape key handler
     useEffect(() => {
