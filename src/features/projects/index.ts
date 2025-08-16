@@ -1,2 +1,2 @@
-export { default as ProjectsBento } from './components/Projects.tsx';
-export * from './data/projects';
+export { default as ProjectsBento } from './Projects';
+export * from './projects.data';

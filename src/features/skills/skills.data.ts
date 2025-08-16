@@ -1,4 +1,4 @@
-import { formatYearsOfExperience } from '../../../shared/utils/experience';
+import { formatYearsOfExperience } from '../../shared/utils/experience';
 
 export interface Skill {
   id: string;

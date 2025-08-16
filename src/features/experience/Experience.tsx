@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { emojiMappings, experienceData, uiContent } from '../../../data';
-import { calculateYearsOfExperience } from '../../../shared/utils/experience';
-import {
-  calculateCompanyCount,
-  calculateCurrentJobDuration,
-} from '../../../shared/utils/statistics';
+import { emojiMappings, experienceData, uiContent } from '../../data';
+import { calculateYearsOfExperience } from '../../shared/utils/experience';
+import { calculateCompanyCount, calculateCurrentJobDuration } from '../../shared/utils/statistics';
 
 const getEmoji = (iconName?: string) => {
   return (

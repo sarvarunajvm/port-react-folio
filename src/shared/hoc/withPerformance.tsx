@@ -4,8 +4,6 @@
  */
 import React, { ComponentType, Profiler, ProfilerOnRenderCallback, memo, useMemo } from 'react';
 
-// import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
-
 interface PerformanceMetrics {
   id: string;
   phase: 'mount' | 'update' | 'nested-update';
@@ -34,7 +32,6 @@ export function withPerformance<P extends object>(
     enableProfiling = process.env.NODE_ENV === 'development',
     warnThreshold = 16, // 16ms for 60fps
     memoize = true,
-    // trackProps = false,
     reportTo,
   } = options;
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import type { LoaderProps } from '../../types';
-import { CoffeeLoader } from '../loaders/coffee';
+import { CoffeeLoader } from '../loaders';
 import NeumorphicThemeToggle from './NeumorphicThemeToggle';
 
 const NeomorphicLoader: React.FC<LoaderProps> = ({ onLoadComplete }) => {

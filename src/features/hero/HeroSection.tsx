@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { personalInfo, statistics, uiContent } from '../../../data';
-import AnimatedCounter from '../../../shared/components/ui/AnimatedCounter';
-import type { HeroSectionProps } from '../../../shared/types';
+import { personalInfo, statistics, uiContent } from '../../data';
+import AnimatedCounter from '../../shared/components/ui/AnimatedCounter';
+import type { HeroSectionProps } from '../../shared/types';
 import TypewriterText from './TypewriterText';
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onProfileClick }) => {

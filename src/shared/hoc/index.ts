@@ -3,7 +3,6 @@
  * Advanced component enhancement patterns
  */
 
-export { withLoading } from './withLoading';
 export { withErrorBoundary } from './withErrorBoundary';
 export {
   withPerformance,
@@ -11,6 +10,3 @@ export {
   clearPerformanceMetrics,
   performanceUtils,
 } from './withPerformance';
-export { withAuth } from './withAuth';
-export { withAnalytics } from './withAnalytics';
-export { withAccessibility } from './withAccessibility';

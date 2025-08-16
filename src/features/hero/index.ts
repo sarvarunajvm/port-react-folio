@@ -1,2 +1,2 @@
-export { default as HeroSection } from './components/HeroSection';
-export { default as TypewriterText } from './components/TypewriterText';
+export { default as HeroSection } from './HeroSection';
+export { default as TypewriterText } from './TypewriterText';

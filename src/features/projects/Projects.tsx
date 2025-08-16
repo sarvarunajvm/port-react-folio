@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { projectsData } from '../../../data';
-import AnimatedCounter from '../../../shared/components/ui/AnimatedCounter';
-import { calculateProjectAge } from '../../../shared/utils/statistics';
+import { projectsData } from '../../data';
+import AnimatedCounter from '../../shared/components/ui/AnimatedCounter';
+import { calculateProjectAge } from '../../shared/utils/statistics';
 
 const Projects: React.FC = () => {
   const [isDark, setIsDark] = useState(false);

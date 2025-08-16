@@ -1,2 +1,2 @@
-export { default as AboutBento } from './components/About.tsx';
-export * from './data/about';
+export { default as AboutBento } from './About';
+export * from './about.data';

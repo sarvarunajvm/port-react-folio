@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { skillsData } from '../../../data';
-import { SPRING_CONFIG, cardVariants } from '../../../shared/constants/animations';
+import { skillsData } from '../../data';
+import { SPRING_CONFIG, cardVariants } from '../../shared/constants/animations';
 
 const getEmoji = (iconName?: string) => {
   const emojiMap: { [key: string]: string } = {

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { educationData, emojiMappings, personalInfo, uiContent } from '../../../data';
-import { SPRING_CONFIG, hoverVariants } from '../../../shared/constants/animations';
-import { calculateYearsSinceEducation } from '../../../shared/utils/statistics';
+import { educationData, emojiMappings, personalInfo, uiContent } from '../../data';
+import { SPRING_CONFIG, hoverVariants } from '../../shared/constants/animations';
+import { calculateYearsSinceEducation } from '../../shared/utils/statistics';
 
 const About: React.FC = () => {
   const [formData, setFormData] = useState({
