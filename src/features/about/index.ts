@@ -1,2 +1,2 @@
 export { default as AboutBento } from './About';
-export * from './about.data';
+export { personalInfo, uiContent, educationData } from '../../data/portfolio.data';

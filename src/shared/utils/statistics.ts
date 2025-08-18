@@ -2,7 +2,7 @@
  * Utilities for dynamic statistics and calculations
  * Keeps all numbers and dates automatically updated
  */
-import { experienceData } from '../../features/experience/experience.data';
+import { experienceData } from '../../data/portfolio.data';
 
 /**
  * Calculate duration at current position

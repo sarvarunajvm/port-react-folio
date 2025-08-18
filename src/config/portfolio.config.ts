@@ -49,7 +49,7 @@ export const portfolioConfig: PortfolioConfig = {
   personal: {
     firstname: 'Saravanan',
     lastname: 'Kalimuthu',
-    titles: ['Software Engineer', 'Java Developer', 'Code Enthusiast!'],
+    titles: ['Senior Software Engineer', 'Java Developer', 'Code Enthusiast!'],
     avatar: 'photo.png',
   },
 

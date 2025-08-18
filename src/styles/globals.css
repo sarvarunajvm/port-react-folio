@@ -501,28 +501,28 @@ h2::after {
 }
 
 h1 {
-  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
 }
 h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
 }
 h3 {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(var(--text-xl), 2.5vw, var(--text-2xl));
 }
 h4 {
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
 }
 h5 {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
 }
 h6 {
-  font-size: 1rem;
+  font-size: var(--text-base);
 }
 
 p {
   margin-bottom: var(--space-md);
   font-weight: var(--font-weight-normal);
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: var(--fg);
 }
 
@@ -756,26 +756,26 @@ a:hover {
   }
 
   body {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 
   h1 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
   }
   h2 {
-    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    font-size: clamp(var(--text-xl), 3.5vw, var(--text-2xl));
   }
   h3 {
-    font-size: clamp(1.125rem, 3vw, 1.5rem);
+    font-size: clamp(var(--text-lg), 3vw, var(--text-2xl));
   }
   h4 {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(var(--text-base), 2.5vw, var(--text-xl));
   }
   h5 {
-    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-size: clamp(var(--text-sm), 2vw, var(--text-lg));
   }
   h6 {
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
   }
 
   .container {
@@ -916,27 +916,27 @@ html:not([data-theme='dark']) .opacity-40 {
 
 /* Font weight utility classes - standardized */
 .font-regular {
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .font-medium {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .font-semibold {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .font-extrabold {
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
 }
 
 .font-black {
-  font-weight: 900;
+  font-weight: var(--font-weight-black);
 }
 
 /* Font family utility classes */
@@ -960,35 +960,35 @@ html:not([data-theme='dark']) .opacity-40 {
 
 /* Typography Utility Classes for Consistent Design */
 .text-heading-1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
   font-weight: var(--font-weight-bold);
   line-height: var(--leading-tight);
   color: var(--text-primary);
 }
 
 .text-heading-2 {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
   font-weight: var(--font-weight-bold);
   line-height: var(--leading-tight);
   color: var(--text-primary);
 }
 
 .text-heading-3 {
-  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
   font-weight: var(--font-weight-semibold);
   line-height: var(--leading-snug);
   color: var(--text-primary);
 }
 
 .text-body-large {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(var(--text-base), 2vw, var(--text-lg));
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-relaxed);
   color: var(--text-secondary);
 }
 
 .text-body-base {
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
   color: var(--text-secondary);
@@ -997,7 +997,7 @@ html:not([data-theme='dark']) .opacity-40 {
 /* Button styles with accent color */
 .btn-accent {
   background: var(--accent);
-  color: white;
+  color: var(--bg);
   font-weight: var(--font-weight-semibold);
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);

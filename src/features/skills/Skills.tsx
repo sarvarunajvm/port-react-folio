@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { skillsData } from '../../data';
+import AnimatedCounter from '../../shared/components/ui/AnimatedCounter';
 import { SPRING_CONFIG, cardVariants } from '../../shared/constants/animations';
 
 const getEmoji = (iconName?: string) => {
@@ -183,34 +184,35 @@ const Skills: React.FC = () => {
           >
             <div className="flex flex-row justify-center items-center gap-2 sm:gap-6 lg:gap-8 text-center">
               <div className="flex flex-col items-center">
-                <p
+                <AnimatedCounter
+                  end={totalSkills}
+                  suffix="+"
+                  duration={2}
                   className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   style={{ color: 'var(--accent)' }}
-                >
-                  {totalSkills}+
-                </p>
+                />
                 <p className="text-xs sm:text-base md:text-lg font-medium text-muted">
                   Total Skills
                 </p>
               </div>
               <div className="w-px h-8 md:h-10 bg-gray-300 dark:bg-gray-700"></div>
               <div className="flex flex-col items-center">
-                <p
+                <AnimatedCounter
+                  end={expertSkills}
+                  duration={2.5}
                   className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   style={{ color: 'var(--accent)' }}
-                >
-                  {expertSkills}
-                </p>
+                />
                 <p className="text-xs sm:text-base md:text-lg font-medium text-muted">Expert</p>
               </div>
               <div className="w-px h-8 md:h-10 bg-gray-300 dark:bg-gray-700"></div>
               <div className="flex flex-col items-center">
-                <p
+                <AnimatedCounter
+                  end={categoriesCount}
+                  duration={3}
                   className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   style={{ color: 'var(--accent)' }}
-                >
-                  {categoriesCount}
-                </p>
+                />
                 <p className="text-xs sm:text-base md:text-lg font-medium text-muted">Categories</p>
               </div>
             </div>

@@ -1,2 +1,2 @@
 export { default as SkillsBento } from './Skills';
-export * from './skills.data';
+export { skillsData } from '../../data/portfolio.data';

@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import { portfolioConfig } from '../config/portfolio.config';
 import { personalInfo, uiContent } from '../data';
 import { HeroSection } from '../features/hero';
+import { FloatingThemeToggle } from '../shared/components/FloatingThemeToggle';
 import { Modal, NavigationCard } from '../shared/components/ui';
 import { containerVariants } from '../shared/constants/animations';
 import { CONTAINER } from '../shared/constants/layout';
-import { withPerformance } from '../shared/hoc/withPerformance';
 import { usePrefersReducedMotion } from '../shared/hooks';
 import type { ModalType, NavigationCardData } from '../shared/types';
 
@@ -109,40 +109,38 @@ const HomeComponent: React.FC = () => {
   const animationVariants = prefersReducedMotion ? {} : containerVariants;
 
   return (
-    <div
-      className={`fixed inset-0 overflow-hidden md:overflow-hidden overflow-y-auto flex items-start md:items-center justify-center ${CONTAINER.PADDING.MOBILE} ${CONTAINER.PADDING.SM} ${CONTAINER.PADDING.MD} ${CONTAINER.PADDING.LG} ${CONTAINER.PADDING.XL}`}
-      style={{ background: 'var(--bg)' }}
-    >
-      <motion.div
-        className={`w-full max-w-[${CONTAINER.MAX_WIDTH}px] mx-auto flex flex-col justify-start md:justify-center min-h-full md:h-full pt-12 pb-8 md:py-0`}
-        variants={animationVariants}
-        initial={prefersReducedMotion ? false : 'hidden'}
-        animate={prefersReducedMotion ? false : 'visible'}
+    <>
+      <div
+        className={`fixed inset-0 overflow-hidden md:overflow-hidden overflow-y-auto flex items-start md:items-center justify-center ${CONTAINER.PADDING.MOBILE} ${CONTAINER.PADDING.SM} ${CONTAINER.PADDING.MD} ${CONTAINER.PADDING.LG} ${CONTAINER.PADDING.XL}`}
+        style={{ background: 'var(--bg)' }}
       >
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 lg:gap-8 pb-20 md:pb-0">
-          <HeroSection onProfileClick={() => handleModalOpen('about')} />
+        <motion.div
+          className={`w-full max-w-[${CONTAINER.MAX_WIDTH}px] mx-auto flex flex-col justify-start md:justify-center min-h-full md:h-full pt-12 pb-8 md:py-0`}
+          variants={animationVariants}
+          initial={prefersReducedMotion ? false : 'hidden'}
+          animate={prefersReducedMotion ? false : 'visible'}
+        >
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 lg:gap-8 pb-20 md:pb-0">
+            <HeroSection onProfileClick={() => handleModalOpen('about')} />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-            {NAVIGATION_CARDS.map((card, index) => (
-              <MemoizedNavigationCard
-                key={card.id}
-                {...card}
-                onClick={() => handleModalOpen(card.id)}
-                delay={prefersReducedMotion ? 0 : index * 0.3}
-              />
-            ))}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+              {NAVIGATION_CARDS.map((card, index) => (
+                <MemoizedNavigationCard
+                  key={card.id}
+                  {...card}
+                  onClick={() => handleModalOpen(card.id)}
+                  delay={prefersReducedMotion ? 0 : index * 0.3}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {renderModal}
-    </div>
+        {renderModal}
+      </div>
+      <FloatingThemeToggle />
+    </>
   );
 };
 
-// Export the performance-enhanced Home component
-export const Home = withPerformance(HomeComponent, {
-  enableProfiling: process.env.NODE_ENV === 'development',
-  memoize: true,
-  warnThreshold: 32,
-});
+export const Home = HomeComponent;

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { emojiMappings, experienceData, uiContent } from '../../data';
+import AnimatedCounter from '../../shared/components/ui/AnimatedCounter';
 import { calculateYearsOfExperience } from '../../shared/utils/experience';
 import { calculateCompanyCount, calculateCurrentJobDuration } from '../../shared/utils/statistics';
 
@@ -92,27 +93,38 @@ const Experience: React.FC = () => {
             >
               <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
                 <div>
-                  <p className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--accent)' }}>
-                    {totalYears}+
-                  </p>
+                  <AnimatedCounter
+                    end={totalYears}
+                    suffix="+"
+                    duration={2}
+                    className="text-4xl md:text-5xl font-bold"
+                    style={{ color: 'var(--accent)' }}
+                  />
                   <p className="text-lg font-medium text-muted">
                     {uiContent.experience.yearsLabel}
                   </p>
                 </div>
                 <div className="w-px h-10 sm:h-12 md:h-14 bg-gray-300 dark:bg-gray-700"></div>
                 <div>
-                  <p className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--accent)' }}>
-                    {companyCount}
-                  </p>
+                  <AnimatedCounter
+                    end={companyCount}
+                    duration={2.5}
+                    className="text-4xl md:text-5xl font-bold"
+                    style={{ color: 'var(--accent)' }}
+                  />
                   <p className="text-lg font-medium text-muted">
                     {uiContent.experience.companiesLabel}
                   </p>
                 </div>
                 <div className="w-px h-10 sm:h-12 md:h-14 bg-gray-300 dark:bg-gray-700"></div>
                 <div>
-                  <p className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--accent)' }}>
-                    15+
-                  </p>
+                  <AnimatedCounter
+                    end={15}
+                    suffix="+"
+                    duration={3}
+                    className="text-4xl md:text-5xl font-bold"
+                    style={{ color: 'var(--accent)' }}
+                  />
                   <p className="text-lg font-medium text-muted">
                     {uiContent.experience.projectsLabel}
                   </p>

@@ -250,15 +250,6 @@ export interface ThemeContextValue {
   readonly setTheme: (theme: 'light' | 'dark') => void;
 }
 
-export interface PortfolioContextValue {
-  readonly personal: PersonalInfo;
-  readonly experience: readonly Experience[];
-  readonly projects: readonly Project[];
-  readonly skills: readonly SkillCategory[];
-  readonly education: readonly Education[];
-  readonly statistics: Statistics;
-}
-
 // ============================================
 // STATISTICS TYPES
 // ============================================
