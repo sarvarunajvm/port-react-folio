@@ -31,7 +31,7 @@
     "@heroui/react": "^2.8.2",
     "framer-motion": "^12.23.12",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.27.1",
