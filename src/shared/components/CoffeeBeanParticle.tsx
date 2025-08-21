@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
+import { Text, Box } from '@radix-ui/themes';
 
 import { CODE_SYMBOLS, THEME_COLORS } from './constants';
 import type { CoffeeBeanProps } from './types';
@@ -46,14 +47,45 @@ const CoffeeBeanParticle: React.FC<CoffeeBeanProps> = ({
       }}
       onAnimationComplete={onAnimationComplete}
     >
-      <div
-        className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br ${colors.bean} neu-float shadow-lg`}
+      <Box
+        style={{
+          position: 'relative',
+          width: '2.5rem',
+          height: '2.5rem',
+          borderRadius: '50%',
+          background: `linear-gradient(135deg, ${colors.bean})`,
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        }}
+        className="md:w-12 md:h-12 neu-float"
       >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent" />
-        <div className="absolute top-1 left-1 w-2 h-2 rounded-full bg-white/30" />
+        <Box
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '50%',
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent)',
+          }}
+        />
+        <Box
+          style={{
+            position: 'absolute',
+            top: '0.25rem',
+            left: '0.25rem',
+            width: '0.5rem',
+            height: '0.5rem',
+            borderRadius: '50%',
+            background: 'rgba(255, 255, 255, 0.3)',
+          }}
+        />
 
         <motion.div
-          className={`absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono ${colors.particle} opacity-0`}
+          style={{
+            position: 'absolute',
+            bottom: '-2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            opacity: 0,
+          }}
           animate={{
             opacity: [0, 0, 1, 0],
             y: [0, 5, 10, 15],
@@ -64,9 +96,17 @@ const CoffeeBeanParticle: React.FC<CoffeeBeanProps> = ({
             times: [0, 0.3, 0.6, 1],
           }}
         >
-          {randomSymbol}
+          <Text
+            size="1"
+            style={{
+              fontFamily: '"Tomorrow", sans-serif',
+              color: colors.particle,
+            }}
+          >
+            {randomSymbol}
+          </Text>
         </motion.div>
-      </div>
+      </Box>
     </motion.div>
   );
 };

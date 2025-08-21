@@ -40,6 +40,10 @@ export default {
         bg: 'var(--bg)',
         surface: 'var(--surface)',
         fg: 'var(--fg)',
+        'icon-blue': 'var(--icon-blue)',
+        'icon-purple': 'var(--icon-purple)',
+        'icon-green': 'var(--icon-green)',
+        'icon-red': 'var(--icon-red)',
       },
       lineHeight: {
         tight: 'var(--leading-tight)',

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
+import { Text, Box } from '@radix-ui/themes';
 
 import { JAVA_KEYWORDS, THEME_COLORS } from './constants';
 import type { SteamParticleProps } from './types';
@@ -33,13 +34,26 @@ const SteamParticle: React.FC<SteamParticleProps> = ({ id, delay, isDark }) => {
         repeat: Infinity,
       }}
     >
-      <div className="relative">
-        <div
-          className={`w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-t ${colors.steam} backdrop-blur-sm`}
+      <Box style={{ position: 'relative' }}>
+        <Box
+          style={{
+            width: '2.5rem',
+            height: '2.5rem',
+            borderRadius: '50%',
+            background: `linear-gradient(to top, ${colors.steam})`,
+            backdropFilter: 'blur(4px)',
+          }}
+          className="md:w-12 md:h-12"
         />
 
         <motion.div
-          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-mono ${colors.particle} whitespace-nowrap`}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            whiteSpace: 'nowrap',
+          }}
           initial={{ opacity: 0 }}
           animate={{
             opacity: [0, 1, 0],
@@ -51,9 +65,17 @@ const SteamParticle: React.FC<SteamParticleProps> = ({ id, delay, isDark }) => {
             ease: 'easeInOut',
           }}
         >
-          {keyword}
+          <Text
+            size="1"
+            style={{
+              fontFamily: '"Tomorrow", sans-serif',
+              color: colors.particle,
+            }}
+          >
+            {keyword}
+          </Text>
         </motion.div>
-      </div>
+      </Box>
     </motion.div>
   );
 };
@@ -68,7 +90,13 @@ const SteamParticles: React.FC<SteamParticlesProps> = ({ isDark, isActive, count
   if (!isActive) return null;
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <Box
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+      }}
+    >
       {Array.from({ length: count }).map((_, index) => (
         <SteamParticle
           key={`steam-${index}`}
@@ -77,7 +105,7 @@ const SteamParticles: React.FC<SteamParticlesProps> = ({ isDark, isActive, count
           isDark={isDark}
         />
       ))}
-    </div>
+    </Box>
   );
 };
 

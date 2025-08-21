@@ -1,11 +1,13 @@
 // vite.config.ts
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import compression from 'vite-plugin-compression';
 
 export default defineConfig(({ mode }) => ({
   plugins: [
+    tailwindcss(),
     react({
       babel: {
         plugins: [['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]],
@@ -57,9 +59,6 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('react') || id.includes('react-dom')) {
               return 'react-vendor';
             }
-            if (id.includes('@heroui')) {
-              return 'heroui-vendor';
-            }
             if (id.includes('framer-motion')) {
               return 'animation-vendor';
             }
@@ -104,7 +103,7 @@ export default defineConfig(({ mode }) => ({
 
   // Optimization settings
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion', '@heroui/react'],
+    include: ['react', 'react-dom', 'framer-motion'],
     exclude: ['@vite/client', '@vite/env'],
   },
 

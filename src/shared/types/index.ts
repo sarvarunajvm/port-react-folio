@@ -1,11 +1,9 @@
 export type ModalType = 'about' | 'experience' | 'projects' | 'skills' | 'contact';
 
-export type ColorVariant = 'blue' | 'purple' | 'green' | 'red';
-
 export interface NavigationCardData {
-  id: ModalType;
+  id: string;
   emoji: string;
-  color: string;
+  color: 'blue' | 'purple' | 'green' | 'red';
   hintEmoji?: string;
   hintText?: string;
   title: string;
@@ -16,24 +14,16 @@ export interface HeroSectionProps {
   onProfileClick: () => void;
 }
 
-export interface NavigationCardProps extends Omit<NavigationCardData, 'id'> {
-  onClick: () => void;
-  delay?: number;
-}
-
-export interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}
-
 export interface LoaderProps {
   onLoadComplete: () => void;
 }
 
-export interface ThemeToggleProps {
-  isDark: boolean;
-  onToggle: () => void;
-  className?: string;
+export interface NavigationCardProps {
+  emoji: string;
+  title: string;
+  subtitle: string;
+  color: 'blue' | 'purple' | 'green' | 'red';
+  hintText?: string;
+  onClick: () => void;
+  delay?: number;
 }

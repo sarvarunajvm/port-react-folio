@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
+import { Text } from '@radix-ui/themes';
 
 interface TypewriterTextProps {
   texts: string[];
@@ -66,14 +67,14 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   ]);
 
   return (
-    <span className={className}>
+    <Text as="span" className={className}>
       {currentText}
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
         className="inline-block w-[2px] h-[1.2em] bg-current ml-1 align-middle"
       />
-    </span>
+    </Text>
   );
 };
 

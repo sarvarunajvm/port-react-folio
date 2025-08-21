@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
+import { Box, Text, Card } from '@radix-ui/themes';
 
 import { THEME_COLORS } from './constants';
 import type { CoffeeCupProps } from './types';
@@ -20,8 +21,18 @@ const CoffeeCup: React.FC<CoffeeCupProps> = ({ progress, isDark, isGrinding, isB
       }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div
-        className={`relative w-48 h-48 md:w-52 md:h-52 lg:w-56 lg:h-56 ${isDark ? 'bg-[#0e0f11]' : 'bg-[#f2f3f5]'} rounded-2xl neu-pressed-lg`}
+      <Card
+        variant="surface"
+        size="4"
+        style={{
+          width: '12rem',
+          height: '12rem',
+          background: 'var(--surface)',
+          boxShadow: isDark
+            ? 'inset 8px 8px 16px rgba(0, 0, 0, 0.6), inset -8px -8px 16px rgba(255, 255, 255, 0.08)'
+            : 'inset 8px 8px 16px rgba(139, 90, 43, 0.15), inset -8px -8px 16px rgba(244, 232, 225, 0.8)',
+        }}
+        className="relative md:w-52 md:h-52 lg:w-56 lg:h-56"
       >
         <div className="absolute inset-2">
           <div className="relative w-full h-full">
@@ -137,33 +148,51 @@ const CoffeeCup: React.FC<CoffeeCupProps> = ({ progress, isDark, isGrinding, isB
                   ease: 'linear',
                 }}
               >
-                <div className={`text-xs font-mono ${colors.particle}`}>
+                <Text size="1" style={{ fontFamily: '"Tomorrow", sans-serif', color: colors.particle }}>
                   <motion.span
                     animate={{ opacity: [0, 1, 0] }}
                     transition={{ duration: 0.5, repeat: Infinity }}
                   >
                     {'< / >'}
                   </motion.span>
-                </div>
+                </Text>
               </motion.div>
             )}
           </div>
         </div>
 
-        <motion.div
-          className={`absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full ${
-            isDark ? 'bg-gray-800' : 'bg-orange-100'
-          } text-xs font-mono ${colors.particle}`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{
-            opacity: isGrinding ? 1 : 0,
-            y: isGrinding ? 0 : 10,
+        <Box
+          style={{
+            position: 'absolute',
+            bottom: '-8px',
+            left: '50%',
+            transform: 'translateX(-50%)',
           }}
-          transition={{ delay: 0.3 }}
         >
-          {isBrewing ? 'brewing...' : 'grinding...'}
-        </motion.div>
-      </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: isGrinding ? 1 : 0,
+              y: isGrinding ? 0 : 10,
+            }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card
+              variant="surface"
+              size="1"
+              style={{
+                background: isDark ? 'var(--gray-8)' : 'var(--orange-3)',
+                borderRadius: '12px',
+                padding: '4px 12px',
+              }}
+            >
+              <Text size="1" style={{ fontFamily: '"Tomorrow", sans-serif', color: colors.particle }}>
+                {isBrewing ? 'brewing...' : 'grinding...'}
+              </Text>
+            </Card>
+          </motion.div>
+        </Box>
+      </Card>
     </motion.div>
   );
 };
