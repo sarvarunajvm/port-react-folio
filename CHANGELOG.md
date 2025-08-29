@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/sarvarunajvm/port-react-folio/compare/v2.1.0...v2.2.0) (2025-08-29)
+
+
+### Features
+
+* **ide:** add Problems panel, full-text search, lucide icons; tighten Terminal types; UI polish ([1d240e9](https://github.com/sarvarunajvm/port-react-folio/commit/1d240e903ee7da30428aa327e59db9cb2ab78b49))
+
 ## [2.1.0](https://github.com/sarvarunajvm/port-react-folio/compare/v2.0.2...v2.1.0) (2025-08-29)
 
 
