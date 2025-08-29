@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/sarvarunajvm/port-react-folio/compare/v2.0.1...v2.0.2) (2025-08-29)
+
+
+### Features
+
+* migrate to Next.js with Tailwind v4, add Aceternity UI touches, configure static export + GitHub Pages via pnpm; update robots/sitemap; add semantic versioning scripts ([9e03731](https://github.com/sarvarunajvm/port-react-folio/commit/9e037313bbd8d2ec16e27a59758cc57ec6c32f58))
+
 ### [2.0.1](https://github.com/sarvarunajvm/port-react-folio/compare/v1.1.0...v2.0.1) (2025-08-29)
 
 ## [1.1.0](https://github.com/sarvarunajvm/port-react-folio/compare/v1.0.2...v1.1.0) (2025-08-21)
