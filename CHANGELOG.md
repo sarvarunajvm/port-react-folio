@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/sarvarunajvm/port-react-folio/compare/v2.0.2...v2.1.0) (2025-08-29)
+
+
+### Features
+
+* **ide:** replace home with VS Code–themed portfolio; remove Bento; tweak config for GitHub Pages; update workflow env; docs ([67e4525](https://github.com/sarvarunajvm/port-react-folio/commit/67e45259b846031e9c52f13f1bc3b46bf47be444))
+
 ### [2.0.2](https://github.com/sarvarunajvm/port-react-folio/compare/v2.0.1...v2.0.2) (2025-08-29)
 
 
