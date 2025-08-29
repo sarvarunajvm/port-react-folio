@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/sarvarunajvm/port-react-folio/compare/v1.1.0...v2.0.1) (2025-08-29)
+
 ## [1.1.0](https://github.com/sarvarunajvm/port-react-folio/compare/v1.0.2...v1.1.0) (2025-08-21)
 
 
