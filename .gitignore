@@ -15,8 +15,9 @@ package-lock.json
 *~
 .DS_Store
 
-# Vite cache
-.vite
+# Next build cache
+.next
+out
 
 # Environment variables
 .env
@@ -43,3 +44,5 @@ lerna-debug.log*
 *.sln
 *.sw?
 .npmrc
+.aider*
+.next

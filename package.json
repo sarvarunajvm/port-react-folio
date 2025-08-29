@@ -1,65 +1,41 @@
 {
-  "name": "port-react-folio",
+  "name": "portfolio-next",
   "private": true,
-  "version": "1.1.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 3",
-    "preview": "vite preview --port 5173",
+    "dev": "next dev -p 5174 --turbopack",
+    "build": "next build",
+    "preview": "npx http-server out -p 5175 -c-1",
+    "export": "echo 'Static export enabled via next.config.mjs (output: export)';",
+    "start": "next start -p 5174",
+    "lint": "next lint --dir .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky",
-    "deploy": "npm run build && echo 'Ready for deployment'",
     "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
-    "release:patch": "standard-version --release-as patch",
     "release:dry": "standard-version --dry-run"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{js,jsx,json,css,md}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
-    "@radix-ui/colors": "^3.0.0",
-    "@radix-ui/themes": "^3.2.1",
-    "framer-motion": "^12.23.12",
-    "radix-ui": "^1.4.3",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "next": "^15.1.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.27.1",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@tailwindcss/vite": "^4.1.12",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24.2.1",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@typescript-eslint/eslint-plugin": "^8.40.0",
-    "@typescript-eslint/parser": "^8.40.0",
-    "@vitejs/plugin-react": "^5.0.1",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.5",
-    "prettier": "^3.6.2",
-    "rollup-plugin-visualizer": "^6.0.3",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "4.1.12",
+    "@tailwindcss/postcss": "^4.1.12",
+    "typescript": "5.6.3",
+    "@types/node": "20.14.12",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "eslint": "9.9.1",
+    "eslint-config-next": "^15.1.0",
     "standard-version": "^9.5.0",
-    "tailwindcss": "^4.1.12",
-    "terser": "^5.43.1",
-    "typescript": "^5.2.2",
-    "vite": "^7.1.2",
-    "vite-plugin-compression": "^0.5.1"
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1"
   }
 }

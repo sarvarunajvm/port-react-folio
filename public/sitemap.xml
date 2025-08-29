@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sarvarunajvm.github.io/port-vue-folio/</loc>
-    <lastmod>2025-08-13</lastmod>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/</loc>
+    <lastmod>2025-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/automations</loc>
+  </url>
+  <url>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/projects</loc>
+  </url>
+  <url>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/skills</loc>
+  </url>
+  <url>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/experience</loc>
+  </url>
+  <url>
+    <loc>https://sarvarunajvm.github.io/port-react-folio/contact</loc>
   </url>
 </urlset>

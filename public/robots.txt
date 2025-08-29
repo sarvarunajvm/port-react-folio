@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sarvarunajvm.github.io/port-vue-folio/sitemap.xml
+Sitemap: https://sarvarunajvm.github.io/port-react-folio/sitemap.xml

@@ -1,0 +1,93 @@
+Back-end: 
+Java, Spring Boot, Spring
+Security, Spring REST, JAX-RS,
+SOAP, WebSockets,
+Hibernate/JPA, Maven, Gradle,
+JUnit, Mockito 
+Front-end: 
+NodeJs, VueJs, ReactJs,
+HTML5/CSS3, Vuex, Redux, NPM,
+Jest, Cypress.
+Databases: 
+Oracle, Postgres, H2, Redis,
+BigQuery, BigTable. 
+DevOps & Deployment:
+Jenkins, Github Actions, Docker,
+Google Cloud, AWS, Otel,
+Micrometer, Splunk, Datadog.
+Version Control/Collaboration: 
+Git, JIRA, Confluence.
+Other Tools & Technologies:
+OAS 2.0, AMQ/Kafka, OAuth2,
+JWT, SonarQube.Saravanan Kalimuthu
+Senior Software Engineer
++91 979-087-0737
+sarvaruna@outlook.com
+LinkedIn
+Results-oriented software engineer with over 8 years in Java development, focusing on
+scalable enterprise applications. Experienced in delivering efficient solutions in fast-paced
+settings and contributing to open-source projects. Aiming to apply full-stack expertise to
+foster innovation in a dynamic development team.
+GitHub
+Tools and technologies.
+PortFolio Relevant Experience
+Software Engineer @Assetpulse, Inc
+Oct 2019 - May 2021
+Revitalized a legacy product with Rest API, increasing user engagement by 2%.
+Switched to Bluetooth Low Energy (BLE) from RFID, reducing costs by one-third.
+Enhanced a triangulation algorithm using WebSocket, improving customer conversion
+rates to 5%.
+Implemented unit and functional tests, achieving 68% code coverage.
+Reduced technical debt by 30 days.
+Software Developer @Wellspring Software Labs
+Feb 2018 - Sep 2019
+Configurable service locator pattern led to a 10% drop in API designs.
+C4 diagrams helped align stakeholders 25% faster.
+Optimized storage reduced average response time from 1200ms to 700ms.
+Client recognition received for effectively solving a problem during a demo.
+Software Engineer @CoreNett Technologies
+Jun 2016 - Dec 2017
+Reduced RTB need by 10% with configurable backend systems.
+Improved report performance by 30% using auto-paginated results.
+Education
+MCA @University of Madras 2016 - 2019
+Obtained 6.48 CGPA and developed a cloud-based service for secure data storage using
+double encryption with a safe key.
+BCA @Gurunanak College 2011 - 2014
+Obtained 6.24 CGPA and is a member of the National Honor Society. 
+Designed a webpage for internal exams.Interests
+Technology, Automation,
+Investments, Swimming,
+Competitive Gaming, and
+Engaging in Open Source
+Projects.ProjectsSkills and Abilities
+Data Structures, Algorithms,
+Problem-Solving, Application
+Design, SOLID Principles, Design
+Patterns, OWASP, Microservices,
+Event-Driven Architecture, Test-
+Driven Development, Caching,
+Database Optimization,
+Collaboration & Teamwork,
+Effective Communication,
+Adaptability.Utils-Commons in Java
+https://github.com/sarvarunajvm/utils-commons
+Inspired by "Apache Commons IO."
+Contains utilities for String, Number, Date, Set, List, BLOB, and Zip.
+Port-Advancer in NodeJS
+https://github.com/sarvarunajvm/port-advancer
+Created a user-friendly tool that allows over 60 employees to easily perform port
+forwarding and reverse proxying for secure internet access within a restricted network.
+vue-embed-gist in JavaScript/Vue
+https://github.com/sudhanshu-15/vue-embed-gist/pull/13
+Contributed to an open-source project that averages 270 downloads per week.  
+Npm link: http://goo.gl/Hjkx2jSr Software Engineer @PayPal 
+May 2021 - Present
+Resolved a product gap in webhooks, now used by 10% of merchants.
+Implemented near-real-time analytics, increasing revenue by 0.01%.
+Reduced spam to below 2% with various effective solutions.
+Optimized certain API performance, improving response speed by 1.5x.
+Achieved a 95% on-time completion rate in all the initiatives.
+Reached 70% code coverage along with the Junit 5 upgrade.
+Improved team productivity through various process enhancements.
+Served as Scrum Master for a quarter, achieving a 90% Say-Do ratio.

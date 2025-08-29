@@ -1,123 +1,29 @@
-# Portfolio - Saravanan Kalimuthu
+# Portfolio – Next.js (GitHub Pages)
 
-A modern, responsive portfolio website built with React 18, TypeScript, and Vite. Features a unique Bento Grid layout with Neomorphic Soft UI design, offering an immersive single-page experience with smooth animations and modal-based content exploration.
+Deployed at: https://sarvarunajvm.github.io/port-react-folio/
 
-## 🌟 Live Demo
+## Local dev
+- Install: `npm i`
+- Dev server: `npm run dev` (http://localhost:5174)
 
-Visit the live portfolio at [https://sarvarunajvm.github.io/port-react-folio](https://sarvarunajvm.github.io/port-react-folio)
+## Build and preview static export
+- Build: `npm run build` (outputs to `out/`)
+- Preview export: `npm run preview` (serves `out/` on http://localhost:5175)
 
-## 🎨 Design Philosophy
+## Deploy to GitHub Pages
+- Workflow: `.github/workflows/deploy.yml`
+- Trigger: push to `main` or manual dispatch
+- Output path uploaded: `out/`
+- Repo Settings → Pages → Build and deployment → Source: “GitHub Actions”
 
-### Bento Grid Layout
+## Config
+- `next.config.mjs`: `output: 'export'`, `basePath` and `assetPrefix` `/port-react-folio/`, `trailingSlash: true`
+- `public/robots.txt` and `public/sitemap.xml` point to your Pages URL
 
-- **Fixed Viewport**: Full-screen, no-scroll design optimized for all devices
-- **Responsive Grid**: Dynamic grid system that adapts from mobile to desktop
-- **Modal Navigation**: Click-to-explore sections with smooth transitions
-- **Interactive Cards**: Hover effects with dynamic color accents
+## Highlights
+- Aceternity-inspired UI touches (spotlight, border beam, shimmer)
+- Automations hub, projects with impact metrics, sticky CTA, command palette
 
-### Neomorphic Soft UI
-
-- **3D Surfaces**: Raised cards with realistic shadows and depth
-- **Theme Support**: Light and dark modes with system preference detection
-- **Accent Colors**: Pastel Copper (light mode) and Pastel silver (dark mode) highlights
-- **Smooth Animations**: Framer Motion powered transitions with reduced motion support
-
-## 🚀 Tech Stack
-
-### Core Technologies
-
-- **Framework**: React 18.2 with TypeScript 5.2
-- **Build Tool**: Vite 7.1 with optimized chunking strategy
-- **UI Library**: HeroUI Components 2.8
-- **Animations**: Framer Motion 12.23
-- **Styling**: Tailwind CSS 3.4 + Custom CSS Variables
-
-### Development Tools
-
-- **Code Quality**: ESLint + Prettier with automatic formatting
-- **Git Hooks**: Husky + lint-staged for pre-commit checks
-- **Commit Standards**: Commitlint with conventional commits
-- **Bundle Analysis**: Rollup Visualizer for optimization
-- **Compression**: Gzip + Brotli for production builds
-
-## 📦 Quick Start
-
-```bash
-# Clone repository
-git clone https://github.com/sarvarunajvm/port-react-folio.git
-cd port-react-folio
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Visit `http://localhost:5173` to see the portfolio.
-
-## 🛠️ Available Scripts
-
-### Development
-
-```bash
-npm run dev          # Start development server on port 5173
-npm run preview      # Preview production build locally
-npm run lint         # Run ESLint with error reporting
-npm run format       # Format code with Prettier
-npm run format:check # Check code formatting
-```
-
-### Building & Deployment
-
-```bash
-npm run build        # Build for production with optimizations
-npm run deploy       # Build and prepare for deployment
-```
-
-### Release Management
-
-```bash
-npm run release      # Create a new release
-npm run release:patch # Patch version bump (1.0.0 → 1.0.1)
-npm run release:minor # Minor version bump (1.0.0 → 1.1.0)
-npm run release:major # Major version bump (1.0.0 → 2.0.0)
-npm run release:dry  # Preview release without making changes
-```
-
-## 🎯 Features
-
-### Core Components
-
-- **Hero Section**: 
-  - Real-time clock display
-  - Dynamic title rotation with typewriter effect
-  - Live statistics counters (9+ years experience, 25+ projects, 48+ technologies)
-  - Profile avatar with availability status indicator
-
-- **Navigation Cards**: 
-  - Experience: Professional journey with 4 companies
-  - Projects: Open source contributions and utilities
-  - Skills: 48+ technologies across 5 categories
-  - Resume: Direct PDF download
-
-### Interactive Elements
-
-- **Modal System**: Smooth modal transitions for content exploration
-- **Theme Toggle**: Floating theme switcher with system preference detection
-- **Hover Effects**: Dynamic color accents and depth effects
-- **Loading States**: Custom coffee-themed loader with particle animations
-
-### User Experience
-
-- **Responsive Design**: Mobile-first approach with breakpoints for all devices
-- **Performance**: 
-  - Code splitting for optimal loading (< 400KB bundle size)
-  - Lazy loading for modal content
-  - Image optimization and compression
-- **Accessibility**: 
-  - WCAG AA compliant
-  - Keyboard navigation support
   - Screen reader friendly
   - Reduced motion support
 
