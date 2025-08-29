@@ -1,15 +1,18 @@
 import type { FileNode } from '../../ide/VSCodePortfolio'
 
-export default function CodeEditor({ path, node }: { path: string; node?: FileNode }) {
+export default function CodeEditor({ path, node, onCursor, highlight }: { path: string; node?: FileNode; onCursor?: (pos:{line:number;col:number}) => void; highlight?: {file:string; line:number} | null }) {
   if (!node) return <div className="code" style={{ padding: 12 }}>Select a file from the Explorer.</div>
   const lines = (node.content || '').split('\n')
   const lang = node.ext || 'txt'
   return (
-    <div className="code" role="region" aria-label={`Editor for ${path}`}>
+    <div className="code" role="region" aria-label={`Editor for ${path}`} onMouseMove={(e) => {
+      const row = Math.max(1, Math.round((e.nativeEvent.offsetY) / 18))
+      onCursor?.({ line: Math.min(row, lines.length), col: 1 })
+    }}>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <tbody>
           {lines.map((line, i) => (
-            <tr key={i}>
+            <tr key={i} className={highlight && highlight.line === i+1 ? 'line-highlight' : ''}>
               <td className="gutter">{i + 1}</td>
               <td style={{ padding: '0 12px' }}>
                 <CodeLine lang={lang} text={line} />
@@ -35,4 +38,3 @@ function CodeLine({ lang, text }: { lang: string; text: string }) {
   }
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
-

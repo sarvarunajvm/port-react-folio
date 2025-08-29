@@ -11,7 +11,7 @@
 .menubar .item:hover { background: #3c3c3c; }
 .main { display: grid; grid-template-columns: 48px 260px 1fr; min-height: 0; }
 .activitybar { background: #333333; display: flex; flex-direction: column; gap: 16px; align-items: center; padding-top: 8px; }
-.activitybar .icon { width: 22px; height: 22px; opacity: .8; cursor: pointer; }
+.activitybar .icon { width: 22px; height: 22px; opacity: .8; cursor: pointer; color: #c9c9c9; }
 .activitybar .icon.active { opacity: 1; filter: drop-shadow(0 0 2px rgba(0,0,0,0.2)); }
 .sidebar { background: #252526; border-right: 1px solid #2d2d2d; display: flex; flex-direction: column; min-width: 0; }
 .sidebar .title { font-size: 12px; padding: 8px 10px; color: #bbbbbb; letter-spacing: .5px; text-transform: uppercase; }
@@ -24,6 +24,17 @@
 .gutter { position: sticky; left: 0; width: 40px; background: #1e1e1e; color: #555; text-align: right; padding-right: 8px; }
 .terminal { background: #1e1e1e; border-top: 1px solid #2d2d2d; padding: 6px 8px; font-family: inherit; font-size: 12px; }
 .statusbar { display: flex; align-items: center; justify-content: space-between; background: #007ACC; color: white; padding: 0 10px; font-size: 12px; }
+.search-input { width: 100%; background: #1f1f1f; border: 1px solid #3a3a3a; color: #d4d4d4; padding: 6px 8px; border-radius: 4px; }
+.search-results { margin-top: 8px; max-height: 50vh; overflow: auto; }
+.search-item { padding: 6px 8px; border-radius: 4px; }
+.search-item:hover { background: #2a2a2a; }
+.muted { color: #9a9a9a; }
+.problems { padding: 8px; font-size: 12px; }
+.problems-item { display: flex; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; }
+.problems-item:hover { background: #2a2a2a; }
+.sev-warning { color: #fde68a; }
+.sev-error { color: #fecaca; }
+.line-highlight { background: rgba(255,255,0,0.08); }
 
 /* Syntax colors */
 .tok-comment { color: #6A9955; }
@@ -45,4 +56,3 @@
   .ide-root { grid-template-rows: 24px 28px 1fr 120px 22px; }
   .terminal { font-size: 11px; }
 }
-
