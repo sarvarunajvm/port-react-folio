@@ -21,50 +21,22 @@ Deployed at: https://sarvarunajvm.github.io/port-react-folio/
 - `public/robots.txt` and `public/sitemap.xml` point to your Pages URL
 
 ## Highlights
-- Aceternity-inspired UI touches (spotlight, border beam, shimmer)
-- Automations hub, projects with impact metrics, sticky CTA, command palette
+- VS Code IDE-themed portfolio at `/` (title bar, menu bar, activity bar, explorer, tabbed editor, terminal, status bar)
+- Aceternity-inspired subtle animations (optional)
+- Screen reader friendly and reduced motion support
 
-  - Screen reader friendly
-  - Reduced motion support
-
-## 📁 Project Structure
+## 📁 Project Structure (key parts)
 
 ```
-port-react-folio/
-├── src/
-│   ├── app/                     # Application setup
-│   │   ├── App.tsx              # Root component
-│   │   └── providers/           # Context providers
-│   ├── config/
-│   │   └── portfolio.config.ts  # Global configuration
-│   ├── data/
-│   │   └── portfolio.data.ts    # All portfolio content (single source of truth)
-│   ├── features/                # Feature modules
-│   │   ├── about/               # About section
-│   │   ├── experience/          # Experience timeline
-│   │   ├── hero/                # Hero section with typewriter
-│   │   ├── projects/            # Projects showcase
-│   │   └── skills/              # Skills categories
-│   ├── pages/
-│   │   └── Home.tsx             # Main page with Bento grid
-│   ├── shared/                  # Shared resources
-│   │   ├── components/
-│   │   │   ├── loaders/         # Coffee-themed loader
-│   │   │   ├── theme/           # Theme toggle components
-│   │   │   └── ui/              # Reusable UI components
-│   │   ├── contexts/            # React contexts
-│   │   ├── hooks/               # Custom hooks
-│   │   ├── hoc/                 # Higher-order components
-│   │   ├── types/               # TypeScript definitions
-│   │   └── utils/               # Utility functions
-│   └── styles/
-│       └── globals.css          # CSS variables & Neomorphic styles
-├── public/
-│   ├── photo.png                # Profile photo
-│   ├── Resume.pdf               # Downloadable CV
-│   ├── robots.txt               # SEO configuration
-│   └── sitemap.xml              # Site structure
-└── dist/                        # Production build output
+app/
+├── page.tsx                 # IDE portfolio (root)
+├── ide/                     # IDE route and styles (if using separate route)
+│   └── styles.css
+components/ide/              # VS Code UI components
+├── VSCodePortfolio.tsx
+├── data/fs.ts               # File system content
+└── sections/                # TitleBar, MenuBar, ActivityBar, Explorer, Tabs, Editor, Terminal, StatusBar
+public/                      # Static assets (resume, favicon, sitemap, robots)
 ```
 
 ## 🎨 Customization

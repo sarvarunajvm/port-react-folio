@@ -1,0 +1,48 @@
+/* Core VS Code theme layout */
+.ide-root { height: 100vh; display: grid; grid-template-rows: 24px 28px 1fr 160px 22px; background: #1e1e1e; color: #D4D4D4; }
+.titlebar { display: flex; align-items: center; gap: 8px; padding: 0 10px; background: #333333; }
+.traffic { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+.menubar { display: flex; align-items: center; gap: 12px; background: #252526; padding: 0 10px; font-size: 12px; }
+.menubar .item { padding: 4px 6px; border-radius: 4px; }
+.menubar .item:hover { background: #3c3c3c; }
+.main { display: grid; grid-template-columns: 48px 260px 1fr; min-height: 0; }
+.activitybar { background: #333333; display: flex; flex-direction: column; gap: 16px; align-items: center; padding-top: 8px; }
+.activitybar .icon { width: 22px; height: 22px; opacity: .8; cursor: pointer; }
+.activitybar .icon.active { opacity: 1; filter: drop-shadow(0 0 2px rgba(0,0,0,0.2)); }
+.sidebar { background: #252526; border-right: 1px solid #2d2d2d; display: flex; flex-direction: column; min-width: 0; }
+.sidebar .title { font-size: 12px; padding: 8px 10px; color: #bbbbbb; letter-spacing: .5px; text-transform: uppercase; }
+.sidebar .tree { font-size: 12px; padding: 6px 0; overflow: auto; }
+.editor { display: grid; grid-template-rows: 32px 1fr; min-width: 0; }
+.tabs { background: #2d2d2d; display: flex; align-items: center; gap: 6px; padding: 0 6px; overflow: auto; }
+.tab { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-right: 1px solid #1e1e1e; font-size: 12px; cursor: pointer; }
+.tab.active { background: #1e1e1e; }
+.code { position: relative; overflow: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12.5px; line-height: 1.5; }
+.gutter { position: sticky; left: 0; width: 40px; background: #1e1e1e; color: #555; text-align: right; padding-right: 8px; }
+.terminal { background: #1e1e1e; border-top: 1px solid #2d2d2d; padding: 6px 8px; font-family: inherit; font-size: 12px; }
+.statusbar { display: flex; align-items: center; justify-content: space-between; background: #007ACC; color: white; padding: 0 10px; font-size: 12px; }
+
+/* Syntax colors */
+.tok-comment { color: #6A9955; }
+.tok-keyword { color: #569CD6; }
+.tok-string { color: #CE9178; }
+.tok-fn { color: #DCDCAA; }
+.tok-var { color: #9CDCFE; }
+.tok-class { color: #DCDCAA; }
+.tok-xmltag { color: #68217A; }
+.tok-xmlattr { color: #6A9955; }
+.tok-xmlvalue { color: #CE9178; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main { grid-template-columns: 48px 1fr; }
+  .sidebar { display: none; }
+}
+@media (max-width: 640px) {
+  .ide-root { grid-template-rows: 24px 28px 1fr 120px 22px; }
+  .terminal { font-size: 11px; }
+}
+
