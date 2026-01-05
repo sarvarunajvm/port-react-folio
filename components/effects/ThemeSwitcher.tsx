@@ -23,11 +23,8 @@ export default function ThemeSwitcher() {
   const handleThemeChange = (themeId: string) => {
     setCurrentTheme(themeId)
     document.documentElement.setAttribute('data-theme', themeId)
-    localStorage.setItem('portfolio-theme', themeId)
     
-    // Trigger a glitch effect on theme change
-    document.body.classList.add('theme-glitch')
-    setTimeout(() => document.body.classList.remove('theme-glitch'), 300)
+    localStorage.setItem('portfolio-theme', themeId)
   }
 
   return (
