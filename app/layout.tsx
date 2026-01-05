@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Saravanan Kalimuthu | Sr. Software Engineer',
-  description: 'Senior Software Engineer at PayPal. 8+ years building reliable web apps and automations that save teams time. Open source enthusiast.',
+  description: 'Senior Software Engineer at PayPal. 10+ years building reliable web apps and automations that save teams time. Open source enthusiast.',
   keywords: ['Software Engineer', 'PayPal', 'Java', 'Spring Boot', 'React', 'Portfolio'],
   authors: [{ name: 'Saravanan Kalimuthu' }],
   openGraph: {

@@ -219,7 +219,7 @@ export default function AboutSpread({ bio, avatar, location }: AboutSpreadProps)
               transition={{ delay: 0.6 }}
             >
               {[
-                { value: '8+', label: 'Years Experience' },
+                { value: '10+', label: 'Years Experience' },
                 { value: '50+', label: 'Projects Shipped' },
                 { value: '∞', label: 'Coffee Consumed' },
               ].map((stat, i) => (
