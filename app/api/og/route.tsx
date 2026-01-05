@@ -12,18 +12,39 @@ export async function GET() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
           padding: 64,
-          background: 'linear-gradient(135deg, #eef2ff 0%, #ecfeff 100%)',
-          color: '#111827',
-          fontSize: 48,
-          fontWeight: 700,
+          background: 'linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #12121a 100%)',
+          color: '#ffffff',
+          fontFamily: 'system-ui, sans-serif',
         }}
       >
-        <div>Saravanan Kalimuthu</div>
-        <div style={{ fontSize: 28, fontWeight: 500, marginTop: 12 }}>
-          Senior Software Engineer · Automations & Web Apps
+        <div
+          style={{
+            fontSize: 72,
+            fontWeight: 700,
+            background: 'linear-gradient(90deg, #00ffff, #ff00ff)',
+            backgroundClip: 'text',
+            color: 'transparent',
+            marginBottom: 16,
+          }}
+        >
+          Saravanan Kalimuthu
+        </div>
+        <div style={{ fontSize: 32, fontWeight: 500, color: '#b4b4b4' }}>
+          Senior Software Engineer @ PayPal
+        </div>
+        <div
+          style={{
+            marginTop: 32,
+            fontSize: 20,
+            color: '#39ff14',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+          }}
+        >
+          Building systems that scale
         </div>
       </div>
     ),
