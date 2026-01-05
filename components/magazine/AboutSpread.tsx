@@ -87,16 +87,6 @@ export default function AboutSpread({ bio, avatar, location }: AboutSpreadProps)
                       e.currentTarget.style.display = 'none'
                     }}
                   />
-                  <motion.span
-                    className="text-8xl"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, -5, 0],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    👨‍💻
-                  </motion.span>
                 </div>
 
                 {/* Scan line effect */}

@@ -312,39 +312,40 @@ export default function Cover({ name, title, tagline }: CoverProps) {
             </motion.span>
           ))}
         </motion.p>
+      </motion.div>
 
-        {/* Scroll indicator */}
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3 }}
+      >
         <motion.div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3 }}
+          className="flex flex-col items-center gap-4 cursor-pointer hoverable"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          onClick={() => {
+            document.getElementById('toc')?.scrollIntoView({ behavior: 'smooth' })
+          }}
         >
+          <span className="text-label text-xs text-[var(--neon-accent)] tracking-widest">
+            SCROLL TO EXPLORE
+          </span>
           <motion.div
-            className="flex flex-col items-center gap-4 cursor-pointer hoverable"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            onClick={() => {
-              document.getElementById('toc')?.scrollIntoView({ behavior: 'smooth' })
-            }}
+            className="w-6 h-10 border-2 border-[var(--neon-accent)] rounded-full p-1 neon-pulse"
           >
-            <span className="text-label text-xs text-[var(--neon-accent)] tracking-widest">
-              SCROLL TO EXPLORE
-            </span>
             <motion.div
-              className="w-6 h-10 border-2 border-[var(--neon-accent)] rounded-full p-1 neon-pulse"
-            >
-              <motion.div
-                className="w-1.5 h-1.5 bg-[var(--neon-accent)] rounded-full mx-auto"
-                animate={{ y: [0, 20, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                style={{ boxShadow: '0 0 10px var(--neon-accent)' }}
-              />
-            </motion.div>
+              className="w-1.5 h-1.5 bg-[var(--neon-accent)] rounded-full mx-auto"
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              style={{ boxShadow: '0 0 10px var(--neon-accent)' }}
+            />
           </motion.div>
         </motion.div>
+      </motion.div>
 
-        {/* Corner decorations */}
+      {/* Floating icons/symbols */}
         <motion.div
           className="absolute top-8 left-8 text-label text-xs text-[var(--text-muted)]"
           initial={{ opacity: 0, x: -20 }}
@@ -362,7 +363,6 @@ export default function Cover({ name, title, tagline }: CoverProps) {
         >
           ISSUE №01 <span className="text-[var(--neon-secondary)]">●</span>
         </motion.div>
-      </motion.div>
 
       {/* Floating icons/symbols */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
