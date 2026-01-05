@@ -1,17 +1,23 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './data/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        background: 'hsl(0 0% 100%)',
-        foreground: 'hsl(222.2 47.4% 11.2%)',
-        muted: 'hsl(210 40% 96%)',
-        accent: 'hsl(221 83% 53%)',
+        background: 'var(--bg-primary)',
+        foreground: 'var(--text-primary)',
+        muted: 'var(--text-muted)',
+        accent: 'var(--neon-accent)',
       },
-      borderRadius: { xl: '1rem' },
+      fontFamily: {
+        display: ['var(--font-playfair)', 'Georgia', 'serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
+      },
+      borderRadius: {
+        xl: '1rem',
+      },
     },
   },
   plugins: [],
-};
-
+}
