@@ -4,14 +4,14 @@
   "company": "PayPal",
   "bio": "8+ years building reliable web apps and automations that save teams time. Passionate about open source, privacy-first tools, and crafting developer experiences that spark joy.",
   "tagline": "Building systems that scale",
-  "avatar": "/photo.png",
-  "location": "Chennai, India",
-  "links": {
+    "avatar": "photo.png",
+    "location": "Chennai, India",
+    "links": {
     "github": "https://github.com/sarvarunajvm",
     "linkedin": "https://linkedin.com/in/saravanan-kalimuthu-01a0a9113",
     "email": "sarvaruna@outlook.com",
-    "resume": "/Resume.pdf"
-  },
+    "resume": "Resume.pdf"
+    },
   "impactMetrics": [
     {
       "value": "10%",

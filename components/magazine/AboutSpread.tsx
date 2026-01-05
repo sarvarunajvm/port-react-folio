@@ -2,7 +2,6 @@
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
-import Image from 'next/image'
 
 interface AboutSpreadProps {
   bio: string
@@ -77,14 +76,13 @@ export default function AboutSpread({ bio, avatar, location }: AboutSpreadProps)
               >
                 {/* Placeholder for actual photo */}
                 <div
-                  className="w-full h-full flex items-center justify-center"
+                  className="w-full h-full flex items-center justify-center relative"
                   style={{ background: 'var(--bg-tertiary)' }}
                 >
-                  <Image
+                  <img
                     src={avatar}
                     alt="Profile"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover absolute inset-0"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none'
                     }}

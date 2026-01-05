@@ -19,12 +19,14 @@ function MagneticButton({
   children, 
   href, 
   className,
-  color 
+  color,
+  download
 }: { 
   children: React.ReactNode
   href: string
   className?: string
   color: string
+  download?: boolean
 }) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -50,6 +52,7 @@ function MagneticButton({
     <motion.a
       ref={ref}
       href={href}
+      download={download}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       className={`relative group hoverable ${className}`}
@@ -251,6 +254,7 @@ export default function ContactColophon({ links, name }: ContactColophonProps) {
               key={label}
               href={href}
               color={color}
+              download={label === 'Resume' || href.endsWith('.pdf')}
             >
               <Icon 
                 className="w-8 h-8 mx-auto mb-3 transition-all group-hover:scale-110" 
