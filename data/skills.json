@@ -1,0 +1,80 @@
+{
+  "categories": [
+    {
+      "name": "Backend",
+      "color": "#3b82f6",
+      "skills": [
+        { "name": "Java", "level": 5 },
+        { "name": "Spring Boot", "level": 5 },
+        { "name": "Python", "level": 4 },
+        { "name": "FastAPI", "level": 4 },
+        { "name": "Elixir", "level": 3 },
+        { "name": "Phoenix", "level": 3 },
+        { "name": "REST APIs", "level": 5 },
+        { "name": "Kafka", "level": 4 },
+        { "name": "WebSockets", "level": 4 }
+      ]
+    },
+    {
+      "name": "Frontend",
+      "color": "#8b5cf6",
+      "skills": [
+        { "name": "React", "level": 4 },
+        { "name": "Vue.js", "level": 4 },
+        { "name": "TypeScript", "level": 4 },
+        { "name": "LiveView", "level": 3 },
+        { "name": "Electron", "level": 4 },
+        { "name": "Node.js", "level": 4 },
+        { "name": "HTML5/CSS3", "level": 4 }
+      ]
+    },
+    {
+      "name": "Databases",
+      "color": "#10b981",
+      "skills": [
+        { "name": "PostgreSQL", "level": 5 },
+        { "name": "SQLite", "level": 4 },
+        { "name": "Oracle", "level": 4 },
+        { "name": "Redis", "level": 4 },
+        { "name": "BigQuery", "level": 4 },
+        { "name": "BigTable", "level": 3 }
+      ]
+    },
+    {
+      "name": "AI & ML",
+      "color": "#06b6d4",
+      "skills": [
+        { "name": "OpenAI CLIP", "level": 3 },
+        { "name": "PyTorch", "level": 3 },
+        { "name": "InsightFace", "level": 3 },
+        { "name": "Tesseract OCR", "level": 4 },
+        { "name": "MCP", "level": 4 }
+      ]
+    },
+    {
+      "name": "DevOps",
+      "color": "#f59e0b",
+      "skills": [
+        { "name": "Docker", "level": 4 },
+        { "name": "Jenkins", "level": 4 },
+        { "name": "GitHub Actions", "level": 4 },
+        { "name": "GCP", "level": 4 },
+        { "name": "AWS", "level": 3 },
+        { "name": "Datadog", "level": 4 },
+        { "name": "Splunk", "level": 3 }
+      ]
+    },
+    {
+      "name": "Practices",
+      "color": "#ec4899",
+      "skills": [
+        { "name": "Microservices", "level": 5 },
+        { "name": "TDD", "level": 4 },
+        { "name": "SOLID", "level": 5 },
+        { "name": "Design Patterns", "level": 5 },
+        { "name": "Event-Driven", "level": 4 },
+        { "name": "Agile/Scrum", "level": 5 }
+      ]
+    }
+  ]
+}

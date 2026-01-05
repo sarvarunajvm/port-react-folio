@@ -1,0 +1,81 @@
+[
+  {
+    "id": "paypal",
+    "company": "PayPal",
+    "role": "Sr Software Engineer",
+    "type": "Full-time",
+    "period": {
+      "start": "2021",
+      "end": null
+    },
+    "location": "Remote",
+    "description": "Leading backend development for merchant-facing webhook and analytics systems.",
+    "achievements": [
+      "Closed webhook product gap → adopted by 10% of merchants",
+      "Built near real-time analytics → +0.01% revenue impact",
+      "Reduced spam to below 2% with effective solutions",
+      "Optimized API performance → 1.5× faster response",
+      "Achieved 95% on-time completion across all initiatives",
+      "Reached 70% code coverage with JUnit 5 upgrade",
+      "Served as Scrum Master → 90% Say-Do ratio"
+    ],
+    "tags": ["Java", "Spring Boot", "Kafka", "Datadog", "BigQuery"]
+  },
+  {
+    "id": "assetpulse",
+    "company": "Assetpulse",
+    "role": "Software Engineer",
+    "type": "Full-time",
+    "period": {
+      "start": "2019",
+      "end": "2021"
+    },
+    "location": "Chennai",
+    "description": "Full-stack development for IoT-based asset tracking platform.",
+    "achievements": [
+      "Revitalized legacy product with REST API → +2% engagement",
+      "Migrated RFID to BLE → 33% cost reduction",
+      "Enhanced triangulation with WebSocket → +5% conversions",
+      "Implemented comprehensive tests → 68% coverage",
+      "Reduced technical debt by 30 days"
+    ],
+    "tags": ["Java", "Spring", "WebSocket", "BLE", "PostgreSQL"]
+  },
+  {
+    "id": "wellspring",
+    "company": "Wellspring Software Labs",
+    "role": "Software Developer",
+    "type": "Full-time",
+    "period": {
+      "start": "2018",
+      "end": "2019"
+    },
+    "location": "Chennai",
+    "description": "Backend development and architecture documentation.",
+    "achievements": [
+      "Configurable service locator → 10% reduction in API designs",
+      "C4 diagrams → 25% faster stakeholder alignment",
+      "Optimized storage → response time 1200ms → 700ms",
+      "Received client recognition for live demo problem-solving"
+    ],
+    "tags": ["Java", "PostgreSQL", "Architecture", "C4"]
+  },
+  {
+    "id": "corenett",
+    "company": "CoreNett Technologies",
+    "role": "Software Engineer",
+    "type": "Full-time",
+    "period": {
+      "start": "2016",
+      "end": "2017"
+    },
+    "location": "Chennai",
+    "description": "Backend development for enterprise applications.",
+    "achievements": [
+      "Built configurable backends → 10% RTB reduction",
+      "Auto-paginated reports → 30% performance boost"
+    ],
+    "tags": ["Java", "Spring", "Oracle"]
+  }
+]
+
