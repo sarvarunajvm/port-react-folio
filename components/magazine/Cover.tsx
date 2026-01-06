@@ -367,29 +367,47 @@ export default function Cover({ name, title, tagline }: CoverProps) {
       {/* Floating icons/symbols */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {['{ }', '< />', '( )', '[ ]', '&&', '||'].map((symbol, i) => (
-          <motion.div
-            key={i}
-            className="absolute font-mono text-2xl opacity-10"
-            style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              color: i % 2 === 0 ? 'var(--neon-primary)' : 'var(--neon-secondary)',
-            }}
-            animate={{
-              y: [0, -30, 0],
-              rotate: [0, 10, -10, 0],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 5,
-              repeat: Infinity,
-              delay: i * 0.5,
-            }}
-          >
-            {symbol}
-          </motion.div>
+          <FloatingSymbol key={i} symbol={symbol} index={i} />
         ))}
       </div>
     </section>
+  )
+}
+
+function FloatingSymbol({ symbol, index }: { symbol: string, index: number }) {
+  const [position, setPosition] = useState({ left: 0, top: 0 })
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setPosition({
+      left: 10 + Math.random() * 80,
+      top: 10 + Math.random() * 80,
+    })
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
+  return (
+    <motion.div
+      className="absolute font-mono text-2xl opacity-10"
+      style={{
+        left: `${position.left}%`,
+        top: `${position.top}%`,
+        color: index % 2 === 0 ? 'var(--neon-primary)' : 'var(--neon-secondary)',
+      }}
+      animate={{
+        y: [0, -30, 0],
+        rotate: [0, 10, -10, 0],
+        opacity: [0.1, 0.3, 0.1],
+      }}
+      transition={{
+        duration: 5 + Math.random() * 5,
+        repeat: Infinity,
+        delay: index * 0.5,
+      }}
+    >
+      {symbol}
+    </motion.div>
   )
 }

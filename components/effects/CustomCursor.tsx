@@ -1,20 +1,32 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useSpring, useMotionValue } from 'framer-motion'
 
 export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
-  const [trailPositions, setTrailPositions] = useState<{ x: number; y: number }[]>([])
+  
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
   
-  // Smooth spring animation for the ring
-  const ringX = useSpring(cursorX, { damping: 25, stiffness: 400 })
-  const ringY = useSpring(cursorY, { damping: 25, stiffness: 400 })
+  // Create multiple spring instances for the trail effect with different stiffness/damping
+  const springConfig1 = { damping: 25, stiffness: 300 }
+  const springConfig2 = { damping: 20, stiffness: 200 }
+  const springConfig3 = { damping: 15, stiffness: 100 }
+  const springConfig4 = { damping: 10, stiffness: 50 }
 
-  const trailRef = useRef<{ x: number; y: number }[]>([])
+  const x1 = useSpring(cursorX, springConfig1)
+  const y1 = useSpring(cursorY, springConfig1)
+  
+  const x2 = useSpring(cursorX, springConfig2)
+  const y2 = useSpring(cursorY, springConfig2)
+  
+  const x3 = useSpring(cursorX, springConfig3)
+  const y3 = useSpring(cursorY, springConfig3)
+  
+  const x4 = useSpring(cursorX, springConfig4)
+  const y4 = useSpring(cursorY, springConfig4)
 
   useEffect(() => {
     // Hide on mobile
@@ -25,13 +37,6 @@ export default function CustomCursor() {
     const updateCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
-
-      // Update trail
-      trailRef.current = [
-        { x: e.clientX, y: e.clientY },
-        ...trailRef.current.slice(0, 5),
-      ]
-      setTrailPositions([...trailRef.current])
     }
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -76,32 +81,57 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Trail effect */}
-      {trailPositions.map((pos, i) => (
-        <motion.div
-          key={i}
-          className="fixed pointer-events-none z-[99996]"
-          style={{
-            left: pos.x,
-            top: pos.y,
-            width: 8 - i,
-            height: 8 - i,
-            borderRadius: '50%',
-            background: `var(--neon-${i % 2 === 0 ? 'primary' : 'secondary'})`,
-            opacity: 0.3 - i * 0.05,
-            transform: 'translate(-50%, -50%)',
-            boxShadow: `0 0 ${10 - i * 2}px var(--neon-${i % 2 === 0 ? 'primary' : 'secondary'})`,
-          }}
-          initial={false}
-        />
-      ))}
+      {/* Trailing elements */}
+      <motion.div
+        className="fixed pointer-events-none z-[99996]"
+        style={{
+          left: x4,
+          top: y4,
+          width: 24,
+          height: 24,
+          borderRadius: '50%',
+          background: 'var(--neon-accent)',
+          opacity: 0.2,
+          x: '-50%',
+          y: '-50%',
+          filter: 'blur(2px)',
+        }}
+      />
+      <motion.div
+        className="fixed pointer-events-none z-[99997]"
+        style={{
+          left: x3,
+          top: y3,
+          width: 16,
+          height: 16,
+          borderRadius: '50%',
+          background: 'var(--neon-secondary)',
+          opacity: 0.4,
+          x: '-50%',
+          y: '-50%',
+        }}
+      />
+      <motion.div
+        className="fixed pointer-events-none z-[99998]"
+        style={{
+          left: x2,
+          top: y2,
+          width: 12,
+          height: 12,
+          borderRadius: '50%',
+          background: 'var(--neon-primary)',
+          opacity: 0.6,
+          x: '-50%',
+          y: '-50%',
+        }}
+      />
 
-      {/* Main dot */}
+      {/* Main cursor */}
       <motion.div
         className="fixed pointer-events-none z-[99999] mix-blend-difference"
         style={{
-          left: cursorX,
-          top: cursorY,
+          left: x1,
+          top: y1,
           x: '-50%',
           y: '-50%',
         }}
@@ -112,81 +142,25 @@ export default function CustomCursor() {
             background: 'var(--neon-primary)',
             boxShadow: `
               0 0 10px var(--neon-primary),
-              0 0 20px var(--neon-primary),
-              0 0 40px var(--neon-primary)
+              0 0 20px var(--neon-primary)
             `,
           }}
           animate={{
-            width: isClicking ? 4 : isHovering ? 12 : 8,
-            height: isClicking ? 4 : isHovering ? 12 : 8,
+            width: isClicking ? 20 : isHovering ? 32 : 8,
+            height: isClicking ? 20 : isHovering ? 32 : 8,
+            opacity: isHovering ? 0.8 : 1,
           }}
           transition={{ type: 'spring', damping: 20, stiffness: 400 }}
         />
+        {isHovering && (
+          <motion.div
+            className="absolute inset-0 rounded-full border border-[var(--neon-primary)]"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1.5, opacity: 0.5 }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+          />
+        )}
       </motion.div>
-
-      {/* Ring */}
-      <motion.div
-        className="fixed pointer-events-none z-[99998]"
-        style={{
-          left: ringX,
-          top: ringY,
-          x: '-50%',
-          y: '-50%',
-        }}
-      >
-        <motion.div
-          className="rounded-full border-2"
-          style={{
-            borderColor: isHovering ? 'var(--neon-accent)' : 'var(--neon-secondary)',
-            boxShadow: isHovering
-              ? `0 0 20px var(--neon-accent), 0 0 40px var(--neon-accent), inset 0 0 20px rgba(57, 255, 20, 0.1)`
-              : `0 0 10px var(--neon-secondary)`,
-          }}
-          animate={{
-            width: isClicking ? 30 : isHovering ? 60 : 40,
-            height: isClicking ? 30 : isHovering ? 60 : 40,
-            rotate: isHovering ? 180 : 0,
-          }}
-          transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        />
-      </motion.div>
-
-      {/* Magnetic particles around cursor when hovering */}
-      {isHovering && (
-        <>
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="fixed pointer-events-none z-[99997]"
-              style={{
-                left: ringX,
-                top: ringY,
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{
-                scale: 1,
-                opacity: [0, 1, 0],
-                x: Math.cos((i * 60 * Math.PI) / 180) * 40 - 3,
-                y: Math.sin((i * 60 * Math.PI) / 180) * 40 - 3,
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                delay: i * 0.1,
-              }}
-            >
-              <div
-                className="w-1.5 h-1.5 rounded-full"
-                style={{
-                  background: 'var(--neon-accent)',
-                  boxShadow: '0 0 10px var(--neon-accent)',
-                }}
-              />
-            </motion.div>
-          ))}
-        </>
-      )}
     </>
   )
 }
-
