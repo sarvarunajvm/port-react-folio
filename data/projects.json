@@ -12,28 +12,17 @@
       "Sub-2s search times",
       "Cross-platform (Mac/Win/Linux)"
     ],
-    "tags": ["React", "Python", "FastAPI", "Electron", "AI/ML", "CLIP", "SQLite"],
+    "tags": [
+      "React",
+      "Python",
+      "FastAPI",
+      "Electron",
+      "AI/ML",
+      "CLIP",
+      "SQLite"
+    ],
     "links": {
       "github": "https://github.com/sarvarunajvm/ideal-goggles"
-    },
-    "featured": true
-  },
-  {
-    "id": "mydia",
-    "title": "Mydia",
-    "category": "opensource",
-    "status": "active",
-    "year": "2024",
-    "summary": "Self-hosted media management platform with unified movies & TV tracking.",
-    "description": "Modern media companion built with Phoenix LiveView. Features automated downloads, multi-user system with SSO, real-time calendar, and native indexer support. Combines the best of Radarr/Sonarr in one unified app.",
-    "impact": [
-      "Unified Movies + TV Shows",
-      "Built-in multi-user system",
-      "Real-time Phoenix LiveView UI"
-    ],
-    "tags": ["Elixir", "Phoenix", "LiveView", "PostgreSQL", "Docker"],
-    "links": {
-      "github": "https://github.com/getmydia/mydia"
     },
     "featured": true
   },
@@ -50,7 +39,13 @@
       "+0.01% revenue from analytics",
       "Spam reduced to <2%"
     ],
-    "tags": ["Java", "Spring Boot", "Kafka", "Datadog", "BigQuery"],
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Kafka",
+      "Datadog",
+      "BigQuery"
+    ],
     "featured": true
   },
   {
@@ -66,7 +61,12 @@
       "+5% customer conversions",
       "+2% user engagement"
     ],
-    "tags": ["Java", "WebSocket", "BLE", "Spring"],
+    "tags": [
+      "Java",
+      "WebSocket",
+      "BLE",
+      "Spring"
+    ],
     "featured": true
   },
   {
@@ -81,7 +81,12 @@
       "Response: 1200ms → 700ms",
       "25% faster stakeholder alignment"
     ],
-    "tags": ["PostgreSQL", "Architecture", "C4", "Performance"],
+    "tags": [
+      "PostgreSQL",
+      "Architecture",
+      "C4",
+      "Performance"
+    ],
     "featured": false
   },
   {
@@ -96,7 +101,11 @@
       "60+ daily users",
       "Hours saved weekly"
     ],
-    "tags": ["Node.js", "CLI", "Networking"],
+    "tags": [
+      "Node.js",
+      "CLI",
+      "Networking"
+    ],
     "links": {
       "github": "https://github.com/sarvarunajvm/port-advancer"
     },
@@ -115,7 +124,13 @@
       "10K-40K+ page docs support",
       "MCP Server integrated"
     ],
-    "tags": ["Python", "AI/ML", "MCP", "Claude", "Scraping"],
+    "tags": [
+      "Python",
+      "AI/ML",
+      "MCP",
+      "Claude",
+      "Scraping"
+    ],
     "links": {
       "github": "https://github.com/yusufkaraaslan/Skill_Seekers"
     },
@@ -132,7 +147,11 @@
     "impact": [
       "Developer productivity boost"
     ],
-    "tags": ["Java", "Library", "Utilities"],
+    "tags": [
+      "Java",
+      "Library",
+      "Utilities"
+    ],
     "links": {
       "github": "https://github.com/sarvarunajvm/utils-commons"
     },
@@ -149,11 +168,41 @@
     "impact": [
       "~270 weekly downloads"
     ],
-    "tags": ["Vue", "JavaScript", "OSS", "npm"],
+    "tags": [
+      "Vue",
+      "JavaScript",
+      "OSS",
+      "npm"
+    ],
     "links": {
       "github": "https://github.com/sudhanshu-15/vue-embed-gist/pull/13",
       "npm": "https://www.npmjs.com/package/vue-embed-gist"
     },
     "featured": false
+  },
+  {
+    "id": "mydia",
+    "title": "Mydia",
+    "category": "opensource",
+    "status": "active",
+    "year": "2024",
+    "summary": "Self-hosted media management platform with unified movies & TV tracking.",
+    "description": "Modern media companion built with Phoenix LiveView. Features automated downloads, multi-user system with SSO, real-time calendar, and native indexer support. Combines the best of Radarr/Sonarr in one unified app.",
+    "impact": [
+      "Unified Movies + TV Shows",
+      "Built-in multi-user system",
+      "Real-time Phoenix LiveView UI"
+    ],
+    "tags": [
+      "Elixir",
+      "Phoenix",
+      "LiveView",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "links": {
+      "github": "https://github.com/getmydia/mydia"
+    },
+    "featured": true
   }
 ]

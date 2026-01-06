@@ -29,63 +29,24 @@ export default function ThemeSwitcher() {
 
   return (
     <motion.div
-      className="fixed top-6 right-6 z-[1001]"
-      initial={{ opacity: 0, y: -20 }}
+      className="fixed bottom-6 right-6 z-[1001]"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1, duration: 0.5 }}
     >
-      {/* Main toggle button */}
-      <motion.button
-        className="relative w-12 h-12 rounded-full overflow-hidden neon-border"
-        style={{
-          background: `linear-gradient(135deg, ${themes.find(t => t.id === currentTheme)?.colors[0]}, ${themes.find(t => t.id === currentTheme)?.colors[1]})`,
-        }}
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-black/50 flex items-center justify-center"
-          animate={{ opacity: isOpen ? 0.8 : 0.3 }}
-        >
-          <motion.svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            animate={{ rotate: isOpen ? 180 : 0 }}
-          >
-            <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-          </motion.svg>
-        </motion.div>
-        
-        {/* Rotating glow */}
-        <motion.div
-          className="absolute inset-[-2px] rounded-full opacity-50"
-          style={{
-            background: `conic-gradient(from 0deg, ${themes.find(t => t.id === currentTheme)?.colors[0]}, ${themes.find(t => t.id === currentTheme)?.colors[1]}, ${themes.find(t => t.id === currentTheme)?.colors[0]})`,
-          }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-        />
-      </motion.button>
-
       {/* Theme options */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute top-16 right-0 flex flex-col gap-3 p-3 rounded-2xl"
+            className="absolute bottom-16 right-0 flex flex-col gap-3 p-3 rounded-2xl"
             style={{
               background: 'rgba(0, 0, 0, 0.8)',
               backdropFilter: 'blur(20px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
             }}
-            initial={{ opacity: 0, scale: 0.8, y: -10 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -10 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           >
             {themes.map((theme, index) => (
@@ -142,6 +103,45 @@ export default function ThemeSwitcher() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Main toggle button */}
+      <motion.button
+        className="relative w-12 h-12 rounded-full overflow-hidden neon-border"
+        style={{
+          background: `linear-gradient(135deg, ${themes.find(t => t.id === currentTheme)?.colors[0]}, ${themes.find(t => t.id === currentTheme)?.colors[1]})`,
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-black/50 flex items-center justify-center"
+          animate={{ opacity: isOpen ? 0.8 : 0.3 }}
+        >
+          <motion.svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            animate={{ rotate: isOpen ? 180 : 0 }}
+          >
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </motion.svg>
+        </motion.div>
+        
+        {/* Rotating glow */}
+        <motion.div
+          className="absolute inset-[-2px] rounded-full opacity-50"
+          style={{
+            background: `conic-gradient(from 0deg, ${themes.find(t => t.id === currentTheme)?.colors[0]}, ${themes.find(t => t.id === currentTheme)?.colors[1]}, ${themes.find(t => t.id === currentTheme)?.colors[0]})`,
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+        />
+      </motion.button>
     </motion.div>
   )
 }

@@ -152,6 +152,7 @@ function HoloCard({ project, index }: { project: Project; index: number }) {
                 color: 'var(--text-muted)',
                 textShadow: isHovered ? `0 0 10px ${colors.primary}` : 'none',
               }}
+              animate={project.featured ? { x: -25 } : {}}
             >
               {project.year}
             </motion.span>
@@ -268,7 +269,7 @@ function HoloCard({ project, index }: { project: Project; index: number }) {
         {/* Featured badge with pulse */}
         {project.featured && (
           <motion.div
-            className="absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center"
+            className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center z-20"
             style={{
               background: colors.primary,
               boxShadow: `0 0 20px ${colors.glow}`,
