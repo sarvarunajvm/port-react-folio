@@ -10,11 +10,11 @@ export default function CustomCursor() {
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
   
-  // Create multiple spring instances for the trail effect with different stiffness/damping
-  const springConfig1 = { damping: 25, stiffness: 300 }
-  const springConfig2 = { damping: 20, stiffness: 200 }
-  const springConfig3 = { damping: 15, stiffness: 100 }
-  const springConfig4 = { damping: 10, stiffness: 50 }
+  // Optimized spring configs for better performance
+  const springConfig1 = { damping: 25, stiffness: 300, mass: 0.1 }
+  const springConfig2 = { damping: 20, stiffness: 200, mass: 0.2 }
+  const springConfig3 = { damping: 15, stiffness: 150, mass: 0.3 }
+  const springConfig4 = { damping: 10, stiffness: 100, mass: 0.4 }
 
   const x1 = useSpring(cursorX, springConfig1)
   const y1 = useSpring(cursorY, springConfig1)
@@ -34,6 +34,7 @@ export default function CustomCursor() {
       return
     }
 
+    // Use passive event listeners for better performance
     const updateCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
@@ -59,11 +60,11 @@ export default function CustomCursor() {
     const handleMouseDown = () => setIsClicking(true)
     const handleMouseUp = () => setIsClicking(false)
 
-    window.addEventListener('mousemove', updateCursor)
-    window.addEventListener('mouseover', handleMouseOver)
-    window.addEventListener('mouseout', handleMouseOut)
-    window.addEventListener('mousedown', handleMouseDown)
-    window.addEventListener('mouseup', handleMouseUp)
+    window.addEventListener('mousemove', updateCursor, { passive: true })
+    window.addEventListener('mouseover', handleMouseOver, { passive: true })
+    window.addEventListener('mouseout', handleMouseOut, { passive: true })
+    window.addEventListener('mousedown', handleMouseDown, { passive: true })
+    window.addEventListener('mouseup', handleMouseUp, { passive: true })
 
     return () => {
       window.removeEventListener('mousemove', updateCursor)
@@ -81,7 +82,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Trailing elements */}
+      {/* Trailing elements with GPU acceleration */}
       <motion.div
         className="fixed pointer-events-none z-[99996]"
         style={{
@@ -95,6 +96,8 @@ export default function CustomCursor() {
           x: '-50%',
           y: '-50%',
           filter: 'blur(2px)',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       />
       <motion.div
@@ -109,6 +112,8 @@ export default function CustomCursor() {
           opacity: 0.4,
           x: '-50%',
           y: '-50%',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       />
       <motion.div
@@ -123,6 +128,8 @@ export default function CustomCursor() {
           opacity: 0.6,
           x: '-50%',
           y: '-50%',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       />
 
@@ -134,6 +141,8 @@ export default function CustomCursor() {
           top: y1,
           x: '-50%',
           y: '-50%',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       >
         <motion.div
@@ -144,20 +153,22 @@ export default function CustomCursor() {
               0 0 10px var(--neon-primary),
               0 0 20px var(--neon-primary)
             `,
+            willChange: 'transform',
           }}
           animate={{
             width: isClicking ? 20 : isHovering ? 32 : 8,
             height: isClicking ? 20 : isHovering ? 32 : 8,
             opacity: isHovering ? 0.8 : 1,
           }}
-          transition={{ type: 'spring', damping: 20, stiffness: 400 }}
+          transition={{ type: 'spring', damping: 20, stiffness: 400, mass: 0.1 }}
         />
         {isHovering && (
           <motion.div
             className="absolute inset-0 rounded-full border border-[var(--neon-primary)]"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1.5, opacity: 0.5 }}
-            transition={{ duration: 0.5, repeat: Infinity }}
+            transition={{ duration: 0.5, repeat: Infinity, ease: 'linear' }}
+            style={{ willChange: 'transform, opacity' }}
           />
         )}
       </motion.div>

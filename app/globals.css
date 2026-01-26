@@ -70,10 +70,16 @@
 
 * {
   box-sizing: border-box;
+  /* GPU acceleration for all elements */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 body {
@@ -82,6 +88,11 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   cursor: none;
+  /* Optimize rendering */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 ::selection {
@@ -859,6 +870,142 @@ body {
   .theme-btn {
     width: 24px;
     height: 24px;
+  }
+}
+
+/* ============================================
+   ⚡ GPU-ACCELERATED GLOW EFFECTS
+   ============================================ */
+
+/* High-performance glow using filters and pseudo-elements */
+.glow-primary {
+  position: relative;
+  will-change: transform;
+}
+
+.glow-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--neon-primary);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow-primary:hover::before {
+  opacity: 0.6;
+}
+
+.glow-secondary {
+  position: relative;
+  will-change: transform;
+}
+
+.glow-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--neon-secondary);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow-secondary:hover::before {
+  opacity: 0.6;
+}
+
+/* Text glow effect using text-shadow BUT with CSS transitions (hardware accelerated when used with CSS, not JS) */
+.text-glow-primary {
+  text-shadow: 0 0 10px var(--neon-primary);
+  transition: text-shadow 0.3s ease, transform 0.2s ease;
+  will-change: transform;
+}
+
+.text-glow-primary:hover {
+  text-shadow: 0 0 20px var(--neon-primary), 0 0 30px var(--neon-primary);
+  transform: scale(1.05);
+}
+
+.text-glow-secondary {
+  text-shadow: 0 0 10px var(--neon-secondary);
+  transition: text-shadow 0.3s ease, transform 0.2s ease;
+  will-change: transform;
+}
+
+.text-glow-secondary:hover {
+  text-shadow: 0 0 20px var(--neon-secondary), 0 0 30px var(--neon-secondary);
+  transform: scale(1.05);
+}
+
+/* Hover state classes for efficient toggling */
+.hover-glow-on {
+  text-shadow: 0 0 15px currentColor, 0 0 25px currentColor !important;
+}
+
+/* Optimized neon text with CSS only */
+.neon-text-optimized {
+  position: relative;
+  color: var(--neon-primary);
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    filter: drop-shadow(0 0 10px var(--neon-primary)) 
+            drop-shadow(0 0 20px var(--neon-primary))
+            brightness(1);
+  }
+  20%, 24%, 55% {
+    filter: drop-shadow(0 0 5px var(--neon-primary)) brightness(0.8);
+  }
+}
+
+/* Shimmer effect using gradient + transform */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent);
+  animation: shimmer 2s infinite;
+  will-change: transform;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(200%);
+  }
+}
+
+/* Pulse glow effect */
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px var(--neon-primary)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px var(--neon-primary)) 
+            drop-shadow(0 0 30px var(--neon-primary)) 
+            brightness(1.2);
   }
 }
 

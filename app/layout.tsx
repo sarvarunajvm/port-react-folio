@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   description: 'Senior Software Engineer at PayPal. 10+ years building reliable web apps and automations that save teams time. Open source enthusiast.',
   keywords: ['Software Engineer', 'PayPal', 'Java', 'Spring Boot', 'React', 'Portfolio'],
   authors: [{ name: 'Saravanan Kalimuthu' }],
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: 'Saravanan Kalimuthu | Sr. Software Engineer',
     description: 'Building systems that scale. Senior Software Engineer at PayPal.',

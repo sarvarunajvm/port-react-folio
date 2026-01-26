@@ -188,7 +188,7 @@ export default function Cover({ name, title, tagline }: CoverProps) {
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ delay: 0.5, duration: 1, type: 'spring', damping: 20 }}
           >
-            {/* Animated letters */}
+            {/* Animated letters - PERFORMANCE OPTIMIZED */}
             <span className="block overflow-hidden">
               {nameParts[0]?.split('').map((char, i) => (
                 <motion.span
@@ -204,13 +204,10 @@ export default function Cover({ name, title, tagline }: CoverProps) {
                   }}
                   whileHover={{
                     y: -10,
-                    color: 'var(--neon-primary)',
-                    textShadow: '0 0 30px var(--neon-primary)',
+                    scale: 1.05,
                   }}
                   style={{
-                    textShadow: nameHover
-                      ? '0 0 20px var(--neon-primary)'
-                      : 'none',
+                    willChange: 'transform',
                   }}
                 >
                   {char}
@@ -222,7 +219,10 @@ export default function Cover({ name, title, tagline }: CoverProps) {
                 <motion.span
                   key={i}
                   className="inline-block neon-text"
-                  style={{ color: 'var(--neon-primary)' }}
+                  style={{ 
+                    color: 'var(--neon-primary)',
+                    willChange: 'transform',
+                  }}
                   initial={{ y: 100, opacity: 0, rotateY: 90 }}
                   animate={{ y: 0, opacity: 1, rotateY: 0 }}
                   transition={{
@@ -411,3 +411,4 @@ function FloatingSymbol({ symbol, index }: { symbol: string, index: number }) {
     </motion.div>
   )
 }
+

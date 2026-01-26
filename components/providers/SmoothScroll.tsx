@@ -14,18 +14,27 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: 'vertical',
       smoothWheel: true,
       touchMultiplier: 2,
+      // Performance optimizations
+      lerp: 0.1,
+      infinite: false,
+      autoResize: true,
+      // Fix container positioning
+      wrapper: window as any,
+      content: document.documentElement,
     })
 
     lenisRef.current = lenis
 
-    function raf(time: number) {
+    // Optimize RAF loop
+    const raf = (time: number) => {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
+    const rafId = requestAnimationFrame(raf)
 
     return () => {
+      cancelAnimationFrame(rafId)
       lenis.destroy()
     }
   }, [])

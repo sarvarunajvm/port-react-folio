@@ -6,14 +6,19 @@ import { motion } from 'framer-motion'
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Particle system
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    // Use optimized canvas context
+    const ctx = canvas.getContext('2d', {
+      alpha: true,
+      desynchronized: true, // Low-latency rendering
+      willReadFrequently: false
+    })
     if (!ctx) return
 
+    // Set canvas dimensions
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
@@ -34,8 +39,13 @@ export default function AnimatedBackground() {
       'var(--neon-accent)',
     ]
 
-    // Create initial particles
-    for (let i = 0; i < 50; i++) {
+    const getColor = (cssVar: string) => {
+      return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim()
+    }
+
+    // Reduce particles for better performance
+    const particleCount = 15
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -48,32 +58,55 @@ export default function AnimatedBackground() {
       })
     }
 
-    let mouseX = canvas.width / 2
-    let mouseY = canvas.height / 2
+    let mouseX = -9999
+    let mouseY = -9999
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
 
-    const getColor = (cssVar: string) => {
-      const style = getComputedStyle(document.documentElement)
-      return style.getPropertyValue(cssVar.replace('var(', '').replace(')', '')).trim() || '#00ffff'
+    // Cache colors once
+    const colorCache = new Map<string, string>()
+    colors.forEach(c => colorCache.set(c, getColor(c)))
+
+    // Visibility optimization
+    let isVisible = true
+    let rafId: number
+    let frameCount = 0
+
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden
+      if (isVisible && !rafId) {
+        rafId = requestAnimationFrame(animate)
+      }
     }
 
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
     const animate = () => {
+      if (!isVisible) return
+
+      frameCount++
+      
+      // Trail effect
       ctx.fillStyle = 'rgba(10, 10, 15, 0.1)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      particles.forEach((p, index) => {
-        // Mouse attraction
+      const particleLength = particles.length
+      
+      for (let index = 0; index < particleLength; index++) {
+        const p = particles[index]
+        
+        // Mouse attraction (optimized with early exit)
         const dx = mouseX - p.x
         const dy = mouseY - p.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
+        const distSq = dx * dx + dy * dy
         
-        if (dist < 200) {
+        if (distSq < 40000) { // 200^2
+          const dist = Math.sqrt(distSq)
           const force = (200 - dist) / 200 * 0.02
           p.vx += (dx / dist) * force
           p.vy += (dy / dist) * force
@@ -88,9 +121,11 @@ export default function AnimatedBackground() {
         p.vx *= 0.99
         p.vy *= 0.99
 
-        // Boundary check
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+        // Boundary wrap
+        if (p.x < 0) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 0
 
         // Reset if life exceeded
         if (p.life > p.maxLife) {
@@ -103,69 +138,88 @@ export default function AnimatedBackground() {
 
         // Draw particle
         const alpha = 1 - p.life / p.maxLife
-        const color = getColor(p.color)
+        const color = colorCache.get(p.color)!
         
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fillStyle = color
         ctx.globalAlpha = alpha * 0.6
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fill()
 
-        // Glow effect
-        ctx.shadowBlur = 15
-        ctx.shadowColor = color
-        ctx.fill()
-        ctx.shadowBlur = 0
+        // Reduced glow - only every 4th particle
+        if (index % 4 === 0) {
+          ctx.shadowBlur = 8
+          ctx.shadowColor = color
+          ctx.fill()
+          ctx.shadowBlur = 0
+        }
 
-        // Connect nearby particles
-        particles.forEach((p2, index2) => {
-          if (index === index2) return
-          const dx = p.x - p2.x
-          const dy = p.y - p2.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
+        // Connections - draw every 3rd frame and limit checks
+        if (frameCount % 3 === 0 && index % 3 === 0) {
+          const maxCheck = Math.min(index + 3, particleLength)
+          for (let i = index + 1; i < maxCheck; i++) {
+            const p2 = particles[i]
+            const dx = p.x - p2.x
+            const dy = p.y - p2.y
+            const distSq = dx * dx + dy * dy
 
-          if (dist < 100) {
-            ctx.beginPath()
-            ctx.moveTo(p.x, p.y)
-            ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = color
-            ctx.globalAlpha = (1 - dist / 100) * 0.2
-            ctx.stroke()
+            if (distSq < 6400) { // 80^2
+              const dist = Math.sqrt(distSq)
+              ctx.strokeStyle = color
+              ctx.globalAlpha = (1 - dist / 80) * 0.1
+              ctx.beginPath()
+              ctx.moveTo(p.x, p.y)
+              ctx.lineTo(p2.x, p2.y)
+              ctx.stroke()
+            }
           }
-        })
-      })
+        }
+      }
 
       ctx.globalAlpha = 1
-      requestAnimationFrame(animate)
+      rafId = requestAnimationFrame(animate)
     }
 
+    rafId = requestAnimationFrame(animate)
+
+    // Debounced resize handler
+    let resizeTimeout: NodeJS.Timeout
     const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }, 250)
     }
 
     window.addEventListener('resize', handleResize)
-    animate()
 
     return () => {
+      cancelAnimationFrame(rafId)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('resize', handleResize)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      clearTimeout(resizeTimeout)
     }
   }, [])
 
   return (
     <>
-      {/* Particle canvas */}
+      {/* Particle canvas with GPU acceleration */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 z-0 pointer-events-none"
-        style={{ opacity: 0.6 }}
+        style={{ 
+          opacity: 0.6,
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+        }}
       />
 
-      {/* Aurora background */}
-      <div className="aurora-bg" />
+      {/* Aurora background with GPU hints */}
+      <div className="aurora-bg" style={{ willChange: 'opacity' }} />
 
-      {/* Liquid blobs */}
+      {/* Optimized liquid blobs */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full opacity-20"
@@ -174,17 +228,18 @@ export default function AnimatedBackground() {
             filter: 'blur(100px)',
             top: '-200px',
             left: '-200px',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
           animate={{
             x: [0, 100, 50, 0],
             y: [0, 50, 100, 0],
             scale: [1, 1.2, 0.9, 1],
-            borderRadius: ['60% 40% 30% 70%', '30% 60% 70% 40%', '50% 60% 30% 60%', '60% 40% 30% 70%'],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
         
@@ -195,17 +250,18 @@ export default function AnimatedBackground() {
             filter: 'blur(100px)',
             bottom: '-150px',
             right: '-150px',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
           animate={{
             x: [0, -80, -40, 0],
             y: [0, -60, -120, 0],
             scale: [1, 0.9, 1.1, 1],
-            borderRadius: ['40% 60% 70% 30%', '60% 40% 30% 70%', '30% 60% 70% 40%', '40% 60% 70% 30%'],
           }}
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
 
@@ -216,7 +272,8 @@ export default function AnimatedBackground() {
             filter: 'blur(80px)',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)',
+            transform: 'translate(-50%, -50%) translateZ(0)',
+            willChange: 'transform',
           }}
           animate={{
             x: ['-50%', '-30%', '-70%', '-50%'],
@@ -226,7 +283,7 @@ export default function AnimatedBackground() {
           transition={{
             duration: 15,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
       </div>
@@ -240,15 +297,15 @@ export default function AnimatedBackground() {
             linear-gradient(90deg, var(--neon-primary) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
+          willChange: 'opacity',
         }}
       />
 
       {/* Noise overlay */}
-      <div className="noise-overlay" />
+      <div className="noise-overlay" style={{ willChange: 'opacity' }} />
 
       {/* Scanlines */}
-      <div className="scanlines" />
+      <div className="scanlines" style={{ willChange: 'opacity' }} />
     </>
   )
 }
-

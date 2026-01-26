@@ -132,8 +132,12 @@ function HoloCard({ project, index }: { project: Project; index: number }) {
                 className="text-label text-xs tracking-[0.15em] font-bold"
                 style={{ 
                   color: colors.primary,
-                  textShadow: isHovered ? `0 0 20px ${colors.glow}` : 'none',
+                  willChange: 'transform',
                 }}
+                animate={{
+                  scale: isHovered ? 1.05 : 1,
+                }}
+                transition={{ duration: 0.2 }}
               >
                 {project.category.toUpperCase()}
               </motion.span>
@@ -141,7 +145,12 @@ function HoloCard({ project, index }: { project: Project; index: number }) {
                 className="text-headline-sm mt-2"
                 style={{
                   transform: 'translateZ(20px)',
+                  willChange: 'transform',
                 }}
+                animate={{
+                  y: isHovered ? -2 : 0,
+                }}
+                transition={{ duration: 0.2 }}
               >
                 {project.title}
               </motion.h3>
@@ -150,9 +159,12 @@ function HoloCard({ project, index }: { project: Project; index: number }) {
               className="font-mono text-2xl"
               style={{ 
                 color: 'var(--text-muted)',
-                textShadow: isHovered ? `0 0 10px ${colors.primary}` : 'none',
+                willChange: 'transform',
               }}
-              animate={project.featured ? { x: -25 } : {}}
+              animate={{
+                x: project.featured ? -25 : 0,
+              }}
+              transition={{ duration: 0.2 }}
             >
               {project.year}
             </motion.span>

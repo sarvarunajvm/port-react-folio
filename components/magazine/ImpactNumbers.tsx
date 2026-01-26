@@ -149,15 +149,17 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
 
         {/* Content */}
         <div className="relative z-10">
-          {/* Big number with glow */}
+          {/* Big number - OPTIMIZED */}
           <motion.div
             className="text-6xl md:text-7xl font-bold mb-4"
             style={{
               color,
-              textShadow: isHovered 
-                ? `0 0 30px ${color}, 0 0 60px ${color}` 
-                : `0 0 10px ${color}`,
+              willChange: 'transform',
             }}
+            whileHover={{
+              scale: 1.05,
+            }}
+            transition={{ type: 'spring', damping: 15, stiffness: 300 }}
           >
             <GlitchNumber delay={index}>
               <AnimatedCounter value={metric.value} inView={isInView} />
@@ -167,15 +169,25 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
           {/* Label */}
           <motion.h3
             className="text-lg font-semibold mb-2"
-            style={{ color: 'var(--text-primary)' }}
+            style={{ color: 'var(--text-primary)', willChange: 'transform' }}
+            animate={{
+              y: isHovered ? -2 : 0,
+            }}
+            transition={{ duration: 0.2 }}
           >
             {metric.label}
           </motion.h3>
 
           {/* Description */}
-          <p className="text-sm text-[var(--text-muted)]">
+          <motion.p 
+            className="text-sm text-[var(--text-muted)]"
+            animate={{
+              opacity: isHovered ? 1 : 0.8,
+            }}
+            transition={{ duration: 0.2 }}
+          >
             {metric.description}
-          </p>
+          </motion.p>
         </div>
 
         {/* Floating particles on hover */}

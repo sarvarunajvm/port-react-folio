@@ -58,15 +58,14 @@ function ExperienceCard({ experience, index, isLast }: {
       >
         <motion.span
           className="text-label tracking-wider block mb-2"
-          style={{ color }}
-          animate={{
-            textShadow: [
-              '0 0 0px transparent',
-              `0 0 10px ${color}`,
-              '0 0 0px transparent',
-            ],
+          style={{ 
+            color,
+            willChange: 'transform',
           }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={{
+            opacity: [1, 0.7, 1],
+          }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
           {formatDate(experience.period.start)} — {experience.period.end ? formatDate(experience.period.end) : 'Present'}
         </motion.span>
@@ -252,14 +251,11 @@ export default function ExperienceTimeline({ experiences }: ExperienceTimelinePr
           </span>
           <motion.h2
             className="text-headline-md"
+            style={{ willChange: 'transform' }}
             animate={isInView ? {
-              textShadow: [
-                '0 0 0px transparent',
-                '0 0 20px var(--neon-accent)',
-                '0 0 0px transparent',
-              ],
+              opacity: [1, 0.9, 1],
             } : {}}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
           >
             Experience{' '}
             <span className="neon-text-accent" style={{ color: 'var(--neon-accent)' }}>

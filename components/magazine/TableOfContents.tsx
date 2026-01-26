@@ -60,13 +60,18 @@ function TOCEntry({ item, index }: { item: TOCItem; index: number }) {
       />
 
       <div className="relative flex items-center gap-6">
-        {/* Number with neon effect */}
+        {/* Number - OPTIMIZED */}
         <motion.span
-          className="font-mono text-4xl md:text-5xl font-bold transition-all"
+          className="font-mono text-4xl md:text-5xl font-bold"
           style={{
             color: isHovered ? color : 'var(--text-muted)',
-            textShadow: isHovered ? `0 0 20px ${color}` : 'none',
+            transition: 'color 0.2s ease',
+            willChange: 'transform',
           }}
+          animate={{
+            scale: isHovered ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
         >
           {item.number}
         </motion.span>
@@ -74,18 +79,30 @@ function TOCEntry({ item, index }: { item: TOCItem; index: number }) {
         {/* Title */}
         <div className="flex-1">
           <motion.span
-            className="text-xl md:text-2xl font-medium tracking-wide transition-colors"
-            style={{ color: isHovered ? color : 'var(--text-primary)' }}
+            className="text-xl md:text-2xl font-medium tracking-wide"
+            style={{ 
+              color: isHovered ? color : 'var(--text-primary)',
+              transition: 'color 0.2s ease',
+              willChange: 'transform',
+            }}
+            animate={{
+              x: isHovered ? 5 : 0,
+            }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             {item.title}
           </motion.span>
         </div>
 
-        {/* Arrow with animation */}
+        {/* Arrow */}
         <motion.span
           className="text-2xl"
-          style={{ color }}
-          animate={{ x: isHovered ? 10 : 0, opacity: isHovered ? 1 : 0.3 }}
+          style={{ color, willChange: 'transform' }}
+          animate={{ 
+            x: isHovered ? 10 : 0, 
+            opacity: isHovered ? 1 : 0.3,
+          }}
+          transition={{ duration: 0.2 }}
         >
           →
         </motion.span>
