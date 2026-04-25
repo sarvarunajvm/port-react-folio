@@ -1,6 +1,7 @@
 import profile from '@/data/profile.json';
 import projects from '@/data/projects.json';
 import experience from '@/data/experience.json';
+import { ButtonIcon } from '@/components/ButtonIcon';
 import BlurText from '@/components/BlurText';
 import { ScrollScrubHero } from '@/components/ScrollScrubHero';
 
@@ -122,9 +123,18 @@ export default function Home() {
           direction="bottom"
         />
         <div className="hero-actions">
-          <a className="button primary" href={`mailto:${profile.links.email}`}>Email</a>
-          <a className="button" href={profile.links.linkedin}>LinkedIn</a>
-          <a className="button" href={profile.links.github}>GitHub</a>
+          <a className="button primary" href={`mailto:${profile.links.email}`} aria-label="Email Saravanan">
+            <ButtonIcon name="email" />
+            <span className="button-label">Email</span>
+          </a>
+          <a className="button" href={profile.links.linkedin} aria-label="Open LinkedIn profile">
+            <ButtonIcon name="linkedin" />
+            <span className="button-label">LinkedIn</span>
+          </a>
+          <a className="button" href={profile.links.github} aria-label="Open GitHub profile">
+            <ButtonIcon name="github" />
+            <span className="button-label">GitHub</span>
+          </a>
         </div>
       </section>
     </main>

@@ -3,6 +3,7 @@
 import { type SyntheticEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
+import { ButtonIcon, type ButtonIconName } from '@/components/ButtonIcon';
 
 export type StaggeredMenuItem = {
   label: string;
@@ -31,6 +32,15 @@ type StaggeredMenuProps = {
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
 };
+
+function getSocialIcon(label: string): ButtonIconName {
+  const normalized = label.toLowerCase();
+  if (normalized.includes('resume')) return 'resume';
+  if (normalized.includes('github')) return 'github';
+  if (normalized.includes('linkedin')) return 'linkedin';
+  if (normalized.includes('email')) return 'email';
+  return 'work';
+}
 
 export default function StaggeredMenu({
   position = 'right',
@@ -96,7 +106,7 @@ export default function StaggeredMenu({
       gsap.set([panel, ...preLayers], { xPercent: offscreen, opacity: 1 });
       gsap.set([plusHRef.current, plusVRef.current], { transformOrigin: '50% 50%' });
       gsap.set(plusHRef.current, { rotate: 0 });
-      gsap.set(plusVRef.current, { rotate: 90 });
+      gsap.set(plusVRef.current, { rotate: 0 });
       gsap.set(textInnerRef.current, { yPercent: 0 });
       gsap.set(toggleBtnRef.current, { color: menuButtonColor });
     });
@@ -164,7 +174,7 @@ export default function StaggeredMenu({
       iconTweenRef.current = gsap
         .timeline({ defaults: { ease: 'power3.out' } })
         .to(plusHRef.current, { rotate: opening ? 45 : 0, duration: 0.34 }, 0)
-        .to(plusVRef.current, { rotate: opening ? -45 : 90, duration: 0.34 }, 0);
+        .to(plusVRef.current, { rotate: opening ? -45 : 0, duration: 0.34 }, 0);
 
       textTweenRef.current = gsap.to(textInnerRef.current, {
         yPercent: opening ? -50 : 0,
@@ -312,8 +322,8 @@ export default function StaggeredMenu({
           </span>
         </span>
         <span className="sm-icon" aria-hidden="true">
-          <span ref={plusHRef} />
-          <span ref={plusVRef} />
+          <span ref={plusHRef} className="sm-icon-line-menu-a" />
+          <span ref={plusVRef} className="sm-icon-line-menu-b" />
         </span>
       </button>
 
@@ -355,8 +365,9 @@ export default function StaggeredMenu({
                 <ul className="sm-socials-list" role="list">
                   {socialItems.map((item) => (
                     <li key={item.label}>
-                      <a className="sm-socials-link" href={item.link} onClick={closeMenu}>
-                        {item.label}
+                      <a className="sm-socials-link" href={item.link} aria-label={item.label} onClick={closeMenu}>
+                        <ButtonIcon name={getSocialIcon(item.label)} />
+                        <span className="sm-socials-label">{item.label}</span>
                       </a>
                     </li>
                   ))}

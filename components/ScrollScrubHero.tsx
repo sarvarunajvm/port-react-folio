@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { Profile } from '@/types/content';
+import { ButtonIcon } from '@/components/ButtonIcon';
 import BlurText from '@/components/BlurText';
 import StaggeredMenu from '@/components/StaggeredMenu';
 import { publicUrl } from '@/lib/public-url';
@@ -213,14 +214,17 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
           <p className="hero-summary">{profile.bio}</p>
 
           <div className="hero-actions">
-            <a className="button primary" href="#work">
-              View work
+            <a className="button primary" href="#work" aria-label="View work">
+              <ButtonIcon name="work" />
+              <span className="button-label">View work</span>
             </a>
-            <a className="button" href={publicUrl(`/${profile.links.resume}`)}>
-              Resume
+            <a className="button" href={publicUrl(`/${profile.links.resume}`)} aria-label="Open resume">
+              <ButtonIcon name="resume" />
+              <span className="button-label">Resume</span>
             </a>
-            <a className="button" href={`mailto:${profile.links.email}`}>
-              Email
+            <a className="button" href={`mailto:${profile.links.email}`} aria-label="Email Saravanan">
+              <ButtonIcon name="email" />
+              <span className="button-label">Email</span>
             </a>
           </div>
         </div>

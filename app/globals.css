@@ -145,6 +145,20 @@ main::before {
   will-change: clip-path;
 }
 
+.scrub-media::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(116px, 18vw, 190px);
+  height: clamp(44px, 8vw, 72px);
+  background:
+    radial-gradient(ellipse at 100% 100%, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.78) 44%, transparent 72%),
+    linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.86));
+  pointer-events: none;
+}
+
 .scrub-media::after {
   content: '';
   position: absolute;
@@ -1060,6 +1074,14 @@ main::before {
   transform-origin: 50% 50%;
 }
 
+.sm-toggle:not(.sm-dialog-toggle) .sm-icon-line-menu-a {
+  top: calc(50% - 3px);
+}
+
+.sm-toggle:not(.sm-dialog-toggle) .sm-icon-line-menu-b {
+  top: calc(50% + 3px);
+}
+
 .sm-prelayers,
 .sm-panel {
   position: absolute;
@@ -1191,6 +1213,8 @@ main::before {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.06);
   padding: 0 12px;
@@ -1241,6 +1265,13 @@ main::before {
 
 .button {
   min-width: 130px;
+}
+
+.button-icon {
+  display: none;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
 }
 
 .button.primary {
@@ -1674,13 +1705,15 @@ main::before {
 
 @media (max-width: 620px) {
   .scrub-hero {
-    min-height: 2300px;
+    min-height: 2200px;
   }
 
   .scrub-video,
   .scrub-poster {
-    object-fit: contain;
-    object-position: center center;
+    top: -22px;
+    height: calc(100% + 88px);
+    object-fit: cover;
+    object-position: center top;
     background: #000000;
   }
 
@@ -1699,7 +1732,7 @@ main::before {
   }
 
   .scrub-copy {
-    top: 148px;
+    top: clamp(124px, 18vh, 152px);
     width: calc(100vw - 30px);
     max-height: none;
   }
@@ -1717,22 +1750,33 @@ main::before {
   }
 
   .scrub-copy .hero-actions {
-    gap: 8px;
+    gap: 10px;
     margin-top: 12px;
   }
 
   .scrub-copy .button {
-    min-width: 0;
-    min-height: 38px;
-    padding: 0 12px;
-    font-size: 0.64rem;
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
   }
 
   .sm-toggle {
     min-height: 40px;
+    width: 42px;
     flex: 0 0 auto;
-    padding: 0 12px;
+    justify-content: center;
+    padding: 0;
     font-size: 0.62rem;
+  }
+
+  .sm-toggle-text-wrap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .sm-prelayers,
@@ -1759,22 +1803,122 @@ main::before {
     grid-template-columns: 1fr;
   }
 
+  .metrics-section {
+    width: calc(100% - 32px);
+    margin-top: 58px;
+  }
+
+  .metric-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .section {
+    padding: 92px 16px 76px;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+    padding-right: 76px;
+  }
+
+  .section-heading h2,
+  .contact-section h2 {
+    margin-top: 14px;
+    font-size: clamp(2.18rem, 10.6vw, 3rem);
+    line-height: 0.94;
+  }
+
+  .section-heading p:not(.eyebrow) {
+    margin-top: 16px;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .project-grid {
+    gap: 14px;
+  }
+
+  .project-card {
+    min-height: auto;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 22px;
+  }
+
+  .project-card h3,
+  .timeline-item h3,
+  .oss-list h3 {
+    font-size: clamp(1.72rem, 8vw, 2.35rem);
+  }
+
+  .tag-row span {
+    padding: 6px 8px;
+    font-size: 0.66rem;
+  }
+
   .metric-card + .metric-card,
   .oss-list article {
     border-left: 0;
   }
 
-  .section {
-    padding: 76px 18px;
-  }
-
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 12px;
+    padding: 24px 18px;
+  }
+
+  .oss-list article {
+    min-height: auto;
+    padding: 24px 22px;
   }
 
   .contact-section {
-    padding: 68px 24px;
+    margin-inline: 16px;
+    min-height: 520px;
+    padding: 64px 22px 72px;
+  }
+
+  .contact-section h2 {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    line-height: 0.98;
+  }
+
+  .contact-section .hero-actions {
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+    margin-top: 92px;
+  }
+
+  .contact-section .button {
+    width: 46px;
+    min-width: 46px;
+    flex: 0 0 46px;
+    min-height: 46px;
+    padding: 0;
+  }
+
+  .button-icon {
+    display: block;
+  }
+
+  .button-label,
+  .sm-socials-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .sm-socials-link {
+    width: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
   }
 }
 
