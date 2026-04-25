@@ -5,19 +5,19 @@
     "category": "opensource",
     "status": "active",
     "year": "2024",
-    "summary": "Privacy-first photo search powered by AI — everything runs locally on your computer.",
-    "description": "Desktop app for searching your photo library using natural language, face recognition, and OCR. Built with React, Python/FastAPI, and Electron. All AI processing happens on your machine — zero cloud uploads.",
+    "summary": "Privacy-first AI desktop photo manager — all inference runs locally; zero cloud uploads.",
+    "description": "Electron → React 19 → FastAPI → CLIP, InsightFace, and Tesseract → SQLite. Natural language search, face recognition, OCR, and duplicate detection across 100,000+ photos with sub-2s search. Cross-platform macOS, Windows, and Linux. 91+ PRs merged; CI/CD via GitHub Actions with Codecov.",
     "impact": [
-      "100,000+ photo support",
-      "Sub-2s search times",
-      "Cross-platform (Mac/Win/Linux)"
+      "100,000+ photos, sub-2s search",
+      "Local-only inference",
+      "Full CI/CD pipeline"
     ],
     "tags": [
-      "React",
+      "React 19",
       "Python",
       "FastAPI",
       "Electron",
-      "AI/ML",
+      "PyTorch",
       "CLIP",
       "SQLite"
     ],
@@ -27,22 +27,23 @@
     "featured": true
   },
   {
-    "id": "paypal-webhooks",
-    "title": "PayPal Webhooks",
+    "id": "paypal-invoicing",
+    "title": "Invoicing & Communications Platform",
     "category": "professional",
     "status": "shipped",
-    "year": "2023",
-    "summary": "Closed a critical product gap with near real-time analytics and resilient delivery system.",
-    "description": "Designed and implemented a webhook notification system that addressed merchant needs for reliable event delivery. Built analytics pipeline for real-time monitoring and spam prevention.",
+    "year": "2021",
+    "summary": "Architecture-led work on merchant invoicing — whitelabeling, aggregation, reliability, and API governance.",
+    "description": "Email & URL whitelabeling from discovery to production; invoice aggregation with phased rollout and zero P1s; observability and daily health digests; progressive API gating with fraud signals; webhooks with at-least-once delivery; Redis-backed read path improvements and test modernization.",
     "impact": [
-      "Adopted by ~10% of merchants",
-      "+0.01% revenue from analytics",
-      "Spam reduced to <2%"
+      "Availability 99.56% → 99.96%",
+      "Coverage ~40% → 70%",
+      "Webhook feature: ~10% merchant adoption"
     ],
     "tags": [
       "Java",
       "Spring Boot",
       "Kafka",
+      "Redis",
       "Datadog",
       "BigQuery"
     ],
@@ -50,42 +51,44 @@
   },
   {
     "id": "ble-migration",
-    "title": "BLE Migration",
+    "title": "RFID / IoT Asset Platform",
     "category": "professional",
     "status": "shipped",
     "year": "2020",
-    "summary": "Migrated asset tracking from RFID to Bluetooth Low Energy, dramatically reducing costs.",
-    "description": "Led the technical migration from expensive RFID hardware to cost-effective BLE beacons. Implemented WebSocket-based triangulation for real-time location tracking.",
+    "summary": "Industrial IoT tracking with Impinj RFID, real-time maps, and extensible hardware plugins.",
+    "description": "Hardware adapter architecture (OctaneSDK, Chronicle Queue, Drools), spatial tracking with WebSocket and Konva maps, plugin model for new hardware, and check-in/check-out with OTA updates for edge devices.",
     "impact": [
-      "33% cost reduction",
-      "+5% customer conversions",
-      "+2% user engagement"
+      "33% hardware cost reduction (tech evaluation)",
+      "68% test coverage on event paths",
+      "Mock-RFID layer for CI"
     ],
     "tags": [
       "Java",
+      "Spring",
       "WebSocket",
-      "BLE",
-      "Spring"
+      "RFID",
+      "Vue.js",
+      "PostgreSQL"
     ],
     "featured": true
   },
   {
     "id": "storage-tuning",
-    "title": "Storage Optimization",
+    "title": "ERP Performance & Architecture",
     "category": "professional",
     "status": "shipped",
     "year": "2019",
-    "summary": "Optimized database performance and improved architectural documentation.",
-    "description": "Analyzed and tuned PostgreSQL queries and indexing strategies. Created comprehensive C4 architecture diagrams to align technical and business stakeholders.",
+    "summary": "Query optimization and integration patterns across a 20-module wholesale ERP.",
+    "description": "Batching and connection management for cross-module data access; configurable service locator for API routing; C4 diagrams for stakeholder alignment.",
     "impact": [
-      "Response: 1200ms → 700ms",
-      "25% faster stakeholder alignment"
+      "Avg API 1200ms → 700ms",
+      "~25% faster design reviews"
     ],
     "tags": [
       "PostgreSQL",
+      "Java",
       "Architecture",
-      "C4",
-      "Performance"
+      "C4"
     ],
     "featured": false
   },
@@ -95,11 +98,11 @@
     "category": "opensource",
     "status": "active",
     "year": "2021",
-    "summary": "CLI tool for secure port forwarding in restricted corporate networks.",
-    "description": "Created a user-friendly command-line tool that enables employees to easily perform port forwarding and reverse proxying for secure internet access within restricted networks.",
+    "summary": "Internal developer tool for port-forwarding and reverse proxying on a restricted corporate network.",
+    "description": "Node.js CLI used by 60+ engineers for secure port-forward and reverse-proxy workflows behind corporate restrictions.",
     "impact": [
-      "60+ daily users",
-      "Hours saved weekly"
+      "60+ engineers",
+      "Port-forward & reverse proxy"
     ],
     "tags": [
       "Node.js",
@@ -109,7 +112,7 @@
     "links": {
       "github": "https://github.com/sarvarunajvm/port-advancer"
     },
-    "featured": false
+    "featured": true
   },
   {
     "id": "skill-seekers",
@@ -143,9 +146,9 @@
     "status": "active",
     "year": "2020",
     "summary": "Java utility library inspired by Apache Commons IO.",
-    "description": "Collection of utilities for String, Number, Date, Set, List, BLOB, and Zip operations. Focused on developer productivity and clean APIs.",
+    "description": "General-purpose utilities for String, Number, Date, Set, List, BLOB, and Zip operations.",
     "impact": [
-      "Developer productivity boost"
+      "Reusable library for JVM projects"
     ],
     "tags": [
       "Java",
@@ -163,10 +166,10 @@
     "category": "opensource",
     "status": "contributed",
     "year": "2021",
-    "summary": "Contribution to popular Vue component for embedding GitHub Gists.",
-    "description": "Contributed improvements to an open-source package that averages 270 weekly downloads on npm.",
+    "summary": "Open-source contribution to a Vue component for embedding GitHub Gists.",
+    "description": "Merged contribution to sudhanshu-15/vue-embed-gist — package averages 270+ weekly npm downloads.",
     "impact": [
-      "~270 weekly downloads"
+      "270+ weekly npm downloads"
     ],
     "tags": [
       "Vue",
@@ -203,6 +206,6 @@
     "links": {
       "github": "https://github.com/getmydia/mydia"
     },
-    "featured": true
+    "featured": false
   }
 ]

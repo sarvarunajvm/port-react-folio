@@ -1,43 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import Lenis from 'lenis'
+import { ReactLenis } from 'lenis/react'
+import { ReactNode } from 'react'
 
-export default function SmoothScroll({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null)
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      touchMultiplier: 2,
-      // Performance optimizations
-      lerp: 0.1,
-      infinite: false,
-      autoResize: true,
-      // Fix container positioning
-      wrapper: window as any,
-      content: document.documentElement,
-    })
-
-    lenisRef.current = lenis
-
-    // Optimize RAF loop
-    const raf = (time: number) => {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    const rafId = requestAnimationFrame(raf)
-
-    return () => {
-      cancelAnimationFrame(rafId)
-      lenis.destroy()
-    }
-  }, [])
-
-  return <>{children}</>
+export function SmoothScroll({ children }: { children: ReactNode }) {
+  return (
+    <ReactLenis root options={{ lerp: 0.08, duration: 1.2, smoothWheel: true }}>
+      {children}
+    </ReactLenis>
+  )
 }

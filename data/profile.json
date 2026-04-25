@@ -2,44 +2,44 @@
   "name": "Saravanan Kalimuthu",
   "title": "Senior Software Engineer",
   "company": "PayPal",
-  "bio": "10+ years building reliable web apps and automations that save teams time. Passionate about open source, privacy-first tools, and crafting developer experiences that spark joy.",
-  "tagline": "Building systems that scale",
-    "avatar": "photo.jpeg",
-    "location": "Chennai, India",
-    "links": {
+  "yearsExperience": "9+",
+  "bio": "Senior Software Engineer with 9+ years owning distributed systems across fintech and IoT. At PayPal, led architecture through the full lifecycle — discovery, NFR analysis, phased rollout, and production monitoring — on merchant-facing invoicing and whitelabeling platforms. Known for connecting system-level decisions to measurable outcomes: availability, throughput, fraud reduction, and merchant adoption.",
+  "tagline": "Distributed systems & payments — architecture from discovery to production",
+  "avatar": "personal/contact.png",
+  "location": "Chennai, India",
+  "links": {
     "github": "https://github.com/sarvarunajvm",
     "linkedin": "https://linkedin.com/in/saravanan-kalimuthu-01a0a9113",
     "email": "sarvaruna@outlook.com",
     "resume": "Resume.pdf"
-    },
+  },
   "impactMetrics": [
+    {
+      "value": "99.96%",
+      "label": "Availability",
+      "description": "Service health digests & reliability (from 99.56%)"
+    },
+    {
+      "value": "70%",
+      "label": "Coverage",
+      "description": "Tests with contract tests & mutation testing"
+    },
+    {
+      "value": "Under 2%",
+      "label": "Spam",
+      "description": "Across invoicing APIs (multi-layer detection)"
+    },
     {
       "value": "10%",
       "label": "Merchants",
-      "description": "Using webhooks solution"
-    },
-    {
-      "value": "100K+",
-      "label": "Photos",
-      "description": "Supported in Ideal Goggles"
-    },
-    {
-      "value": "33%",
-      "label": "Cost Cut",
-      "description": "BLE migration savings"
-    },
-    {
-      "value": "<2s",
-      "label": "Search",
-      "description": "AI-powered photo search"
+      "description": "Webhook delivery feature adoption"
     }
   ],
   "tableOfContents": [
-    { "number": "01", "title": "THE STORY", "section": "about" },
-    { "number": "02", "title": "THE IMPACT", "section": "impact" },
-    { "number": "03", "title": "THE JOURNEY", "section": "experience" },
-    { "number": "04", "title": "THE WORK", "section": "projects" },
-    { "number": "05", "title": "THE CRAFT", "section": "skills" },
-    { "number": "06", "title": "CONNECT", "section": "contact" }
+    { "number": "01", "title": "VIEWPORT", "section": "hero" },
+    { "number": "02", "title": "MODULES", "section": "work" },
+    { "number": "03", "title": "TIMELINE", "section": "experience" },
+    { "number": "04", "title": "OUTPUTS", "section": "impact" },
+    { "number": "05", "title": "ENDPOINT", "section": "contact" }
   ]
 }

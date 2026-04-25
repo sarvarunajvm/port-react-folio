@@ -1,72 +1,90 @@
-import type { Metadata } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
-import './globals.css'
-import SmoothScroll from '@/components/providers/SmoothScroll'
-import ThemeSwitcher from '@/components/effects/ThemeSwitcher'
-import CustomCursor from '@/components/effects/CustomCursor'
-import AnimatedBackground from '@/components/effects/AnimatedBackground'
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
+import { SmoothScroll } from '@/components/providers/SmoothScroll';
+import { siteTitle, siteDescription } from '@/lib/site';
 
-const inter = Inter({
-  subsets: ['latin'],
+const spaceGrotesk = localFont({
+  src: '../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2',
+  variable: '--font-display',
+  display: 'swap',
+  weight: '300 700',
+  fallback: [
+    'ui-sans-serif',
+    'system-ui',
+    '-apple-system',
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+});
+
+const manrope = localFont({
+  src: '../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2',
+  variable: '--font-body',
+  display: 'swap',
+  weight: '200 800',
+  fallback: [
+    'ui-sans-serif',
+    'system-ui',
+    '-apple-system',
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+});
+
+const inter = localFont({
+  src: '../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2',
   variable: '--font-inter',
   display: 'swap',
-})
+  weight: '100 900',
+  fallback: [
+    'ui-sans-serif',
+    'system-ui',
+    '-apple-system',
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+});
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrains = localFont({
+  src: '../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2',
   variable: '--font-mono',
   display: 'swap',
-})
+  weight: '100 800',
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+});
 
 export const metadata: Metadata = {
-  title: 'Saravanan Kalimuthu | Sr. Software Engineer',
-  description: 'Senior Software Engineer at PayPal. 10+ years building reliable web apps and automations that save teams time. Open source enthusiast.',
-  keywords: ['Software Engineer', 'PayPal', 'Java', 'Spring Boot', 'React', 'Portfolio'],
-  authors: [{ name: 'Saravanan Kalimuthu' }],
+  title: siteTitle,
+  description: siteDescription,
   icons: {
-    icon: '/favicon.svg',
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
   },
-  openGraph: {
-    title: 'Saravanan Kalimuthu | Sr. Software Engineer',
-    description: 'Building systems that scale. Senior Software Engineer at PayPal.',
-    type: 'website',
-  },
-}
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html 
-      lang="en" 
-      className={`${inter.variable} ${playfair.variable} ${jetbrains.variable}`}
+    <html
+      lang="en"
+      className={`${manrope.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="font-body antialiased">
         <SmoothScroll>
-          {/* Animated background effects */}
-          <AnimatedBackground />
-          
-          {/* Custom cursor */}
-          <CustomCursor />
-          
-          {/* Theme switcher */}
-          <ThemeSwitcher />
-          
-          {/* Main content */}
-          <main className="relative z-10">
+          <main className="relative min-h-dvh w-full min-w-0 max-w-full overflow-x-clip">
             {children}
           </main>
         </SmoothScroll>
       </body>
     </html>
-  )
+  );
 }

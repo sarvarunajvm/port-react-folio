@@ -5,77 +5,74 @@
     "role": "Sr Software Engineer",
     "type": "Full-time",
     "period": {
-      "start": "2021",
+      "start": "2021-05-01",
       "end": null
     },
     "location": "Remote",
-    "description": "Leading backend development for merchant-facing webhook and analytics systems.",
+    "description": "Invoicing & Communications Platform — merchant-facing invoicing, email & URL whitelabeling, aggregation, and platform reliability.",
     "achievements": [
-      "Closed webhook product gap → adopted by 10% of merchants",
-      "Built near real-time analytics → +0.01% revenue impact",
-      "Reduced spam to below 2% with effective solutions",
-      "Optimized API performance → 1.5× faster response",
-      "Achieved 95% on-time completion across all initiatives",
-      "Reached 70% code coverage with JUnit 5 upgrade",
-      "Served as Scrum Master → 90% Say-Do ratio"
+      "Email & URL whitelabeling: led discovery through production — custom sender domains, DKIM/SPF/DMARC enforcement, bounce visibility; URL whitelabeling with Apple Pay & routing trade-offs",
+      "Invoice aggregation: parent-child data model, phased rollout 5%→GA, rollback triggers & DLQ alerting — zero P1 incidents",
+      "Observability: automated daily service health digest — availability 99.56% → 99.96% (~20h recovered annually)",
+      "API governance: progressive access ramp with fraud signals & automated rollback; spam detection strategy — spam under 2% on invoicing APIs",
+      "Reliability: webhook architecture (at-least-once, dedup, fan-out); Redis caching on read path — p99 latency 1.5× better at peak",
+      "Quality & delivery: contract tests & mutation testing — coverage ~40% → 70%; 95% on-time releases; Scrum Master one quarter — 90% Say-Do ratio"
     ],
-    "tags": ["Java", "Spring Boot", "Kafka", "Datadog", "BigQuery"]
+    "tags": ["Java", "Spring Boot", "Kafka", "Redis", "Datadog", "BigQuery"]
   },
   {
     "id": "assetpulse",
-    "company": "Assetpulse",
+    "company": "AssetPulse",
     "role": "Software Engineer",
     "type": "Full-time",
     "period": {
-      "start": "2019",
-      "end": "2021"
+      "start": "2019-10-01",
+      "end": "2021-05-01"
     },
     "location": "Chennai",
-    "description": "Full-stack development for IoT-based asset tracking platform.",
+    "description": "RFID/IoT asset tracking (Industry 4.0) — Impinj readers, real-time location, and extensible hardware integrations.",
     "achievements": [
-      "Revitalized legacy product with REST API → +2% engagement",
-      "Migrated RFID to BLE → 33% cost reduction",
-      "Enhanced triangulation with WebSocket → +5% conversions",
-      "Implemented comprehensive tests → 68% coverage",
-      "Reduced technical debt by 30 days"
+      "Evaluated BLE vs RFID; led migration — 33% hardware cost reduction",
+      "Hardware adapter: Impinj OctaneSDK → Spring Boot via Chronicle Queue → Drools rules engine; runtime-configurable tag logic",
+      "Spatial model & real-time location pipeline (WebSocket); Vue.js + Konva floor-plan maps",
+      "Plugin architecture for hardware vendors; VLC camera adapter for visual verification with RFID",
+      "Check-in/check-out with OTP; OTA updates for edge devices; mock-RFID CI layer — 68% coverage on event paths"
     ],
-    "tags": ["Java", "Spring", "WebSocket", "BLE", "PostgreSQL"]
+    "tags": ["Java", "Spring", "WebSocket", "RFID", "Chronicle Queue", "PostgreSQL"]
   },
   {
     "id": "wellspring",
     "company": "Wellspring Software Labs",
-    "role": "Software Developer",
+    "role": "Software Engineer",
     "type": "Full-time",
     "period": {
-      "start": "2018",
-      "end": "2019"
+      "start": "2018-02-01",
+      "end": "2019-09-01"
     },
     "location": "Chennai",
-    "description": "Backend development and architecture documentation.",
+    "description": "Wholesale distribution ERP (20+ modules) — performance and integration architecture.",
     "achievements": [
-      "Configurable service locator → 10% reduction in API designs",
-      "C4 diagrams → 25% faster stakeholder alignment",
-      "Optimized storage → response time 1200ms → 700ms",
-      "Received client recognition for live demo problem-solving"
+      "Diagnosed data-access bottleneck across modules; query batching & connection management — avg API 1200ms → 700ms",
+      "Configurable service locator — decoupled routing from module implementations",
+      "C4 architecture diagrams — ~25% faster design reviews with stakeholders"
     ],
     "tags": ["Java", "PostgreSQL", "Architecture", "C4"]
   },
   {
     "id": "corenett",
     "company": "CoreNett Technologies",
-    "role": "Software Engineer",
+    "role": "Junior Software Engineer",
     "type": "Full-time",
     "period": {
-      "start": "2016",
-      "end": "2017"
+      "start": "2016-06-01",
+      "end": "2017-12-01"
     },
     "location": "Chennai",
-    "description": "Backend development for enterprise applications.",
+    "description": "CRM / sales force automation — backend routing and reporting performance.",
     "achievements": [
-      "Built configurable backends → 10% RTB reduction",
-      "Auto-paginated reports → 30% performance boost"
+      "Configurable backend routing for CRM platform",
+      "Auto-pagination for reporting queries — ~30% faster report generation"
     ],
     "tags": ["Java", "Spring", "Oracle"]
   }
 ]
-

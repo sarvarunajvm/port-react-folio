@@ -1,0 +1,45 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "number": "01",
+      "kicker": "SYS.VIEWPORT",
+      "title": "Entry",
+      "navLabel": "Viewport"
+    },
+    {
+      "id": "work",
+      "number": "02",
+      "kicker": "SUBSYSTEMS",
+      "title": "Selected work",
+      "navLabel": "Modules"
+    },
+    {
+      "id": "experience",
+      "number": "03",
+      "kicker": "TIMELINE",
+      "title": "Experience",
+      "navLabel": "Nodes"
+    },
+    {
+      "id": "impact",
+      "number": "04",
+      "kicker": "OUTPUTS",
+      "title": "Impact",
+      "navLabel": "Outcomes"
+    },
+    {
+      "id": "contact",
+      "number": "05",
+      "kicker": "ENDPOINT",
+      "title": "Contact",
+      "navLabel": "Signal"
+    }
+  ],
+  "labels": {
+    "workSubtitle": "Production modules and open-source subsystems",
+    "experienceSubtitle": "Key roles and outcomes",
+    "impactSubtitle": "Measured outputs from recent initiatives",
+    "contactSubtitle": "Routes and artifacts"
+  }
+}
