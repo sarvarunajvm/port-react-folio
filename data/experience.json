@@ -14,7 +14,7 @@
       "Email & URL whitelabeling: led discovery through production — custom sender domains, DKIM/SPF/DMARC enforcement, bounce visibility; URL whitelabeling with Apple Pay & routing trade-offs",
       "Invoice aggregation: parent-child data model, phased rollout 5%→GA, rollback triggers & DLQ alerting — zero P1 incidents",
       "Observability: automated daily service health digest — availability 99.56% → 99.96% (~20h recovered annually)",
-      "API governance: progressive access ramp with fraud signals & automated rollback; spam detection strategy — spam under 2% on invoicing APIs",
+      "API governance: progressive access ramp with fraud signals & automated rollback; spam detection strategy — spam <= 2% on invoicing APIs",
       "Reliability: webhook architecture (at-least-once, dedup, fan-out); Redis caching on read path — p99 latency 1.5× better at peak",
       "Quality & delivery: contract tests & mutation testing — coverage ~40% → 70%; 95% on-time releases; Scrum Master one quarter — 90% Say-Do ratio"
     ],
