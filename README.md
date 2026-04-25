@@ -1,60 +1,25 @@
 # Portfolio
 
-A modern, magazine-style portfolio built with Next.js, featuring smooth animations and multiple color themes.
+A clean, data-driven portfolio built with Next.js static export.
 
-**Live:** https://sarvarunajvm.github.io/port-react-folio/
+The implementation keeps content in JSON and media in `public/`, while the UI is intentionally small:
 
-## Features
-
-- 🎨 4 color themes (Cyberpunk, Matrix, Synthwave, Tokyo Night)
-- ✨ Smooth scroll with Lenis
-- 🎬 Framer Motion animations
-- 🖱️ Custom animated cursor
-- 📱 Responsive design
-- ♿ Accessible (respects reduced motion preferences)
+- `app/page.tsx` renders the full portfolio.
+- `app/globals.css` contains the visual system and responsive layout.
+- `data/profile.json`, `data/projects.json`, and `data/experience.json` drive the page.
+- `public/` contains the resume, images, manifest, sitemap, and video assets.
 
 ## Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start dev server (http://localhost:5174)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview static build (http://localhost:5175)
-npm run preview
+pnpm install
+pnpm dev
+pnpm build
+pnpm preview
 ```
+
+The local dev server runs at `http://localhost:5174`.
 
 ## Deployment
 
-Automated via GitHub Actions on push to `main`. Deploys to GitHub Pages.
-
-**Manual deployment:** Upload the `out/` folder to any static hosting.
-
-## Customization
-
-- **Profile data:** `data/profile.json`
-- **Experience:** `data/experience.json`
-- **Projects:** `data/projects.json`
-- **Skills:** `data/skills.json`
-- **Themes:** `app/globals.css` (CSS variables)
-
-## Tech Stack
-
-- Next.js 15 (Static Export)
-- React 19
-- Tailwind CSS 4
-- Framer Motion
-- Lenis (Smooth Scroll)
-- GSAP
-
-## Author
-
-**Saravanan Kalimuthu**
-- [GitHub](https://github.com/sarvarunajvm)
-- [LinkedIn](https://linkedin.com/in/saravanan-kalimuthu-01a0a9113)
-- sarvaruna@outlook.com
+The app is configured for static export and GitHub Pages via `next.config.mjs`.

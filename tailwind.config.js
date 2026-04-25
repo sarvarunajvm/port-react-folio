@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'var(--bg-primary)',
-        foreground: 'var(--text-primary)',
-        muted: 'var(--text-muted)',
-        accent: 'var(--neon-accent)',
+        background: 'var(--bg)',
+        foreground: 'var(--ink)',
+        muted: 'var(--muted)',
+        accent: 'var(--accent)',
       },
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],

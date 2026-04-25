@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import { SmoothScroll } from '@/components/providers/SmoothScroll';
+import { CinematicShell } from '@/components/CinematicShell';
 import { siteTitle, siteDescription } from '@/lib/site';
 
 const spaceGrotesk = localFont({
@@ -67,7 +67,10 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: [{ url: '/favicon.ico', sizes: 'any' }],
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
   },
 };
 
@@ -76,14 +79,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={`${manrope.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
-      suppressHydrationWarning
     >
-      <body className="font-body antialiased">
-        <SmoothScroll>
-          <main className="relative min-h-dvh w-full min-w-0 max-w-full overflow-x-clip">
-            {children}
-          </main>
-        </SmoothScroll>
+      <body>
+        <CinematicShell>{children}</CinematicShell>
       </body>
     </html>
   );

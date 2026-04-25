@@ -25,7 +25,7 @@
       "description": "Tests with contract tests & mutation testing"
     },
     {
-      "value": "Under 2%",
+      "value": "<= 2%",
       "label": "Spam",
       "description": "Across invoicing APIs (multi-layer detection)"
     },

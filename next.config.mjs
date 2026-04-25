@@ -11,9 +11,11 @@ const config = {
   assetPrefix: isPages ? '/port-react-folio/' : undefined,
   trailingSlash: true,
   images: { unoptimized: true },
+  devIndicators: false,
   env: {
     NEXT_PUBLIC_BASE_PATH: isPages ? '/port-react-folio' : '',
   },
+  allowedDevOrigins: ['127.0.0.1'],
   // Prefer this repo when another lockfile exists higher in the tree (silences Turbopack root warning)
   turbopack: {
     root: projectRoot,

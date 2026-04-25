@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SK storm aperture mark">
+  <rect width="64" height="64" rx="14" fill="#050505"/>
+  <path d="M8 32h48M32 8v48" stroke="#ffffff" stroke-opacity=".16" stroke-width="1"/>
+  <circle cx="32" cy="32" r="17" fill="none" stroke="#ffffff" stroke-opacity=".78" stroke-width="2"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="1"/>
+  <path d="M22 40 29 18 31 31 41 24 35 46" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 44c7 5 18 5 26-1" fill="none" stroke="#ffffff" stroke-opacity=".32" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M10 54c10-5 33-5 44 0" fill="none" stroke="#ffffff" stroke-opacity=".14" stroke-width="5" stroke-linecap="round"/>
+</svg>
