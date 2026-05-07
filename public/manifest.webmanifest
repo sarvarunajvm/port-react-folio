@@ -4,9 +4,9 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0b0f17",
-  "theme_color": "#0b0f17",
-  "description": "Software Engineer portfolio showcasing projects, experience, and skills.",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "description": "Senior Software Engineer portfolio covering distributed systems, payments, reliability, and open-source work.",
   "icons": [
     {
       "src": "/favicon.svg",
