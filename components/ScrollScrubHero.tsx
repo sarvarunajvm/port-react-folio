@@ -19,8 +19,11 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const targetTimeRef = useRef(0);
   const renderedTimeRef = useRef(0);
+  const targetGazeRef = useRef(0);
+  const renderedGazeRef = useRef(0);
   const layoutProgressRef = useRef(0);
   const lastSeekAtRef = useRef(0);
+  const reducedMotionRef = useRef(false);
   const lastVarsRef = useRef({
     content: -1,
     layout: -1,
@@ -29,10 +32,22 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
     vignette: -1,
   });
   const [loading, setLoading] = useState(true);
+  const [primaryTagline, secondaryTagline] = profile.tagline.split(' — ');
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setLoading(false), 1900);
-    return () => window.clearTimeout(timeout);
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    reducedMotionRef.current = media.matches;
+
+    const timeout = window.setTimeout(() => setLoading(false), media.matches ? 500 : 1900);
+    const updatePreference = () => {
+      reducedMotionRef.current = media.matches;
+    };
+
+    media.addEventListener('change', updatePreference);
+    return () => {
+      window.clearTimeout(timeout);
+      media.removeEventListener('change', updatePreference);
+    };
   }, []);
 
   useEffect(() => {
@@ -67,12 +82,18 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
     const render = (now: number) => {
       updateLayout();
 
+      const gazeDelta = Math.abs(targetGazeRef.current - renderedGazeRef.current);
+      const gazeEase = clamp(0.075 + gazeDelta * 0.24);
+      renderedGazeRef.current += (targetGazeRef.current - renderedGazeRef.current) * gazeEase;
+      targetTimeRef.current = renderedGazeRef.current * SCRUB_SECONDS;
+      sectionRef.current?.style.setProperty('--gaze-progress', renderedGazeRef.current.toFixed(4));
+
       const video = videoRef.current;
       if (video && Number.isFinite(video.duration)) {
         const maxTime = Math.min(SCRUB_SECONDS, Math.max(0, video.duration - 0.04));
         const smallPanelActive = layoutProgressRef.current >= SCRUB_START_LAYOUT;
-        const nextTime = smallPanelActive ? Math.min(targetTimeRef.current, maxTime) : 0;
-        renderedTimeRef.current += (nextTime - renderedTimeRef.current) * (smallPanelActive ? 0.16 : 0.28);
+        const nextTime = smallPanelActive && !reducedMotionRef.current ? Math.min(targetTimeRef.current, maxTime) : 0;
+        renderedTimeRef.current += (nextTime - renderedTimeRef.current) * (smallPanelActive ? 0.13 : 0.24);
 
         video.pause();
         if (!smallPanelActive && video.currentTime > 0.04) {
@@ -95,8 +116,7 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
 
     const updatePointer = (clientX: number) => {
       const gazeProgress = clamp(1 - clientX / window.innerWidth);
-      targetTimeRef.current = gazeProgress * SCRUB_SECONDS;
-      sectionRef.current?.style.setProperty('--gaze-progress', gazeProgress.toFixed(4));
+      targetGazeRef.current = gazeProgress;
     };
 
     const onPointerMove = (event: PointerEvent) => updatePointer(event.clientX);
@@ -184,6 +204,8 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
             <StaggeredMenu
               items={[
                 { label: 'Home', ariaLabel: 'Go to top', link: '#top' },
+                { label: 'Impact', ariaLabel: 'View impact metrics', link: '#impact' },
+                { label: 'Focus', ariaLabel: 'View engineering focus', link: '#focus' },
                 { label: 'Work', ariaLabel: 'View selected work', link: '#work' },
                 { label: 'Experience', ariaLabel: 'View experience', link: '#experience' },
                 { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
@@ -201,6 +223,16 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
             />
           </div>
         ) : null}
+
+        <div className="hero-presence" aria-label={`${profile.name}, ${profile.tagline}`}>
+          <p className="eyebrow">{profile.name}</p>
+          <h2>{primaryTagline}</h2>
+          {secondaryTagline ? <p>{secondaryTagline}</p> : null}
+          <div>
+            <span>{profile.location}</span>
+            <span>{profile.yearsExperience} years experience</span>
+          </div>
+        </div>
 
         <div className="scrub-copy">
           <p className="eyebrow">{profile.title} at {profile.company}</p>

@@ -8,7 +8,7 @@
     "build": "next build",
     "preview": "npx http-server out -p 5175 -c-1",
     "start": "npx http-server out -p 5174 -c-1",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "release": "standard-version",

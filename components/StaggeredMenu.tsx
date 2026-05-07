@@ -42,6 +42,10 @@ function getSocialIcon(label: string): ButtonIconName {
   return 'work';
 }
 
+function getExternalLinkProps(link: string) {
+  return link.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {};
+}
+
 export default function StaggeredMenu({
   position = 'right',
   colors = ['rgba(255,255,255,0.18)', 'rgba(0,0,0,0.94)'],
@@ -365,7 +369,13 @@ export default function StaggeredMenu({
                 <ul className="sm-socials-list" role="list">
                   {socialItems.map((item) => (
                     <li key={item.label}>
-                      <a className="sm-socials-link" href={item.link} aria-label={item.label} onClick={closeMenu}>
+                      <a
+                        className="sm-socials-link"
+                        href={item.link}
+                        aria-label={item.label}
+                        onClick={closeMenu}
+                        {...getExternalLinkProps(item.link)}
+                      >
                         <ButtonIcon name={getSocialIcon(item.label)} />
                         <span className="sm-socials-label">{item.label}</span>
                       </a>

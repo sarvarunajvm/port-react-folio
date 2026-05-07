@@ -3,10 +3,66 @@ import projects from '@/data/projects.json';
 import experience from '@/data/experience.json';
 import { ButtonIcon } from '@/components/ButtonIcon';
 import BlurText from '@/components/BlurText';
+import { MicroInteractions } from '@/components/MicroInteractions';
 import { ScrollScrubHero } from '@/components/ScrollScrubHero';
+import { publicUrl } from '@/lib/public-url';
+import { siteDescription, siteUrl } from '@/lib/site';
 
 const featuredProjects = projects.filter((project) => project.featured);
-const openSourceProjects = projects.filter((project) => project.category === 'opensource');
+const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
+const moreOpenSourceProjects = projects.filter(
+  (project) => project.category === 'opensource' && !featuredProjectIds.has(project.id),
+);
+const stackTags = Array.from(new Set(projects.flatMap((project) => project.tags))).slice(0, 16);
+
+const capabilityCards = [
+  {
+    kicker: 'Architecture',
+    title: 'Turn ambiguous product goals into rollout-ready systems.',
+    body: 'Discovery, NFR analysis, data modeling, and release plans that make production behavior explicit before implementation.',
+    proof: 'Data modeling, whitelabeling, webhook delivery, rollout controls',
+  },
+  {
+    kicker: 'Reliability',
+    title: 'Keep services observable, recoverable, and boring at scale.',
+    body: 'Health digests, rollback triggers, DLQ alerting, and contract coverage that expose risk while there is still time to act.',
+    proof: 'Health digests, rollback triggers, DLQ alerting, contract tests',
+  },
+  {
+    kicker: 'Governance',
+    title: 'Balance API growth with fraud controls and platform guardrails.',
+    body: 'Progressive access ramps, fraud signals, deduplication, and measurable quality gates across merchant-facing workflows.',
+    proof: 'Fraud signals, access ramping, deduped delivery, quality gates',
+  },
+  {
+    kicker: 'Delivery',
+    title: 'Lead cross-functional execution from design review to GA.',
+    body: 'Clear trade-offs, phased launches, and team rituals that keep technical direction tied to business outcomes.',
+    proof: 'Phased launches, stakeholder reviews, scrum rhythm, release gates',
+  },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.title,
+  description: siteDescription,
+  url: siteUrl,
+  image: `${siteUrl}personal/contact.png`,
+  email: `mailto:${profile.links.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Chennai',
+    addressCountry: 'IN',
+  },
+  worksFor: {
+    '@type': 'Organization',
+    name: profile.company,
+  },
+  sameAs: [profile.links.github, profile.links.linkedin],
+  knowsAbout: stackTags,
+};
 
 function formatPeriod(period: (typeof experience)[number]['period']) {
   const start = new Date(period.start).getFullYear();
@@ -14,12 +70,35 @@ function formatPeriod(period: (typeof experience)[number]['period']) {
   return `${start} - ${end}`;
 }
 
+function externalLinkProps(href: string) {
+  return href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {};
+}
+
+function projectLinks(project: (typeof projects)[number]) {
+  const links = 'links' in project ? project.links : undefined;
+  return {
+    github: links && 'github' in links ? links.github : undefined,
+    npm: links && 'npm' in links ? links.npm : undefined,
+  };
+}
+
 export default function Home() {
   return (
     <main>
+      <MicroInteractions />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      <a className="skip-link" href="#work">
+        Skip to selected work
+      </a>
+
       <ScrollScrubHero profile={profile} />
 
-      <section className="metrics-section" aria-label="Impact metrics">
+      <section className="metrics-section" id="impact" aria-label="Impact metrics">
         {profile.impactMetrics.map((metric) => (
           <article className="metric-card" key={metric.label}>
             <strong>{metric.value}</strong>
@@ -27,6 +106,42 @@ export default function Home() {
             <p>{metric.description}</p>
           </article>
         ))}
+      </section>
+
+      <section className="section capability-section" id="focus" aria-label="Engineering capabilities">
+        <div className="section-heading">
+          <p className="eyebrow">Engineering focus</p>
+          <BlurText
+            as="h2"
+            text="Senior ownership where product, reliability, and delivery meet."
+            delay={92}
+            direction="top"
+          />
+          <p>
+            The throughline is pragmatic platform work: reduce uncertainty, shape the system,
+            ship in phases, and leave behind instrumentation that tells the truth.
+          </p>
+        </div>
+
+        <div className="capability-grid">
+          {capabilityCards.map((capability) => (
+            <article className="capability-card" key={capability.kicker}>
+              <p className="capability-kicker">{capability.kicker}</p>
+              <h3>{capability.title}</h3>
+              <p>{capability.body}</p>
+              <span>{capability.proof}</span>
+            </article>
+          ))}
+        </div>
+
+        <div className="stack-strip" aria-label="Core technologies">
+          <span>Core stack</span>
+          <div className="tag-row">
+            {stackTags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="section" id="work">
@@ -40,26 +155,56 @@ export default function Home() {
         </div>
 
         <div className="project-grid">
-          {featuredProjects.map((project, index) => (
-            <article className="project-card" key={project.id}>
-              <div className="project-index">{String(index + 1).padStart(2, '0')}</div>
-              <div>
-                <p className="project-meta">{project.category} / {project.year}</p>
-                <BlurText as="h3" text={project.title} delay={62} direction="bottom" />
-                <p>{project.summary}</p>
-              </div>
-              <ul>
-                {project.impact.slice(0, 3).map((impact) => (
-                  <li key={impact}>{impact}</li>
-                ))}
-              </ul>
-              <div className="tag-row">
-                {project.tags.slice(0, 4).map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
-            </article>
-          ))}
+          {featuredProjects.map((project, index) => {
+            const links = projectLinks(project);
+
+            return (
+              <article className="project-card" key={project.id}>
+                <div className="project-card-header">
+                  <div className="project-index">{String(index + 1).padStart(2, '0')}</div>
+                  <span className="status-pill">{project.status}</span>
+                </div>
+                <div>
+                  <p className="project-meta">{project.category} / {project.year}</p>
+                  <BlurText as="h3" text={project.title} delay={62} direction="bottom" />
+                  <p>{project.summary}</p>
+                  <p className="project-description">{project.description}</p>
+                </div>
+                <ul>
+                  {project.impact.slice(0, 3).map((impact) => (
+                    <li key={impact}>{impact}</li>
+                  ))}
+                </ul>
+                <div className="tag-row">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                {links.github || links.npm ? (
+                  <div className="project-links">
+                    {links.github ? (
+                      <a
+                        href={links.github}
+                        aria-label={`Open ${project.title} on GitHub`}
+                        {...externalLinkProps(links.github)}
+                      >
+                        GitHub
+                      </a>
+                    ) : null}
+                    {links.npm ? (
+                      <a
+                        href={links.npm}
+                        aria-label={`Open ${project.title} on npm`}
+                        {...externalLinkProps(links.npm)}
+                      >
+                        npm
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -98,43 +243,96 @@ export default function Home() {
 
       <section className="section">
         <div className="section-heading">
-          <p className="eyebrow">Open source</p>
-          <BlurText as="h2" text="Tools outside the day job." delay={105} direction="top" />
+          <p className="eyebrow">More open source</p>
+          <BlurText as="h2" text="Additional tools and contributions." delay={105} direction="top" />
+          <p>
+            Smaller tools, libraries, and contributions that show range across ecosystems without
+            pulling attention away from the selected work.
+          </p>
         </div>
 
         <div className="oss-list">
-          {openSourceProjects.map((project) => (
-            <article key={project.id}>
-              <span>{project.year}</span>
-              <BlurText as="h3" text={project.title} delay={62} direction="bottom" />
-              <p>{project.summary}</p>
-              {project.links?.github ? <a href={project.links.github}>GitHub</a> : null}
-            </article>
-          ))}
+          {moreOpenSourceProjects.map((project) => {
+            const links = projectLinks(project);
+
+            return (
+              <article key={project.id}>
+                <span>{project.year}</span>
+                <BlurText as="h3" text={project.title} delay={62} direction="bottom" />
+                <p>{project.summary}</p>
+                <div className="oss-links">
+                  {links.github ? (
+                    <a
+                      href={links.github}
+                      aria-label={`Open ${project.title} on GitHub`}
+                      {...externalLinkProps(links.github)}
+                    >
+                      GitHub
+                    </a>
+                  ) : null}
+                  {links.npm ? (
+                    <a
+                      href={links.npm}
+                      aria-label={`Open ${project.title} on npm`}
+                      {...externalLinkProps(links.npm)}
+                    >
+                      npm
+                    </a>
+                  ) : null}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       <section className="contact-section" id="contact">
-        <p className="eyebrow">Contact</p>
-        <BlurText
-          as="h2"
-          text="Let’s build something that survives production."
-          delay={90}
-          direction="bottom"
-        />
-        <div className="hero-actions">
-          <a className="button primary" href={`mailto:${profile.links.email}`} aria-label="Email Saravanan">
-            <ButtonIcon name="email" />
-            <span className="button-label">Email</span>
-          </a>
-          <a className="button" href={profile.links.linkedin} aria-label="Open LinkedIn profile">
-            <ButtonIcon name="linkedin" />
-            <span className="button-label">LinkedIn</span>
-          </a>
-          <a className="button" href={profile.links.github} aria-label="Open GitHub profile">
-            <ButtonIcon name="github" />
-            <span className="button-label">GitHub</span>
-          </a>
+        <div className="contact-layout">
+          <div className="contact-copy">
+            <p className="eyebrow">Contact</p>
+            <BlurText
+              as="h2"
+              text="Let’s build something that survives production."
+              delay={90}
+              direction="bottom"
+            />
+            <p>
+              Based in {profile.location}. Open to senior engineering conversations around
+              platform reliability, payments, and product-facing backend systems.
+            </p>
+            <div className="hero-actions">
+              <a className="button primary" href={`mailto:${profile.links.email}`} aria-label="Email Saravanan">
+                <ButtonIcon name="email" />
+                <span className="button-label">Email</span>
+              </a>
+              <a
+                className="button"
+                href={profile.links.linkedin}
+                aria-label="Open LinkedIn profile"
+                {...externalLinkProps(profile.links.linkedin)}
+              >
+                <ButtonIcon name="linkedin" />
+                <span className="button-label">LinkedIn</span>
+              </a>
+              <a
+                className="button"
+                href={profile.links.github}
+                aria-label="Open GitHub profile"
+                {...externalLinkProps(profile.links.github)}
+              >
+                <ButtonIcon name="github" />
+                <span className="button-label">GitHub</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="contact-portrait">
+            <img src={publicUrl(`/${profile.avatar}`)} alt={`Portrait of ${profile.name}`} />
+            <div>
+              <span>{profile.title}</span>
+              <strong>{profile.company}</strong>
+            </div>
+          </div>
         </div>
       </section>
     </main>

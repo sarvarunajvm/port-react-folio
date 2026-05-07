@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { CinematicShell } from '@/components/CinematicShell';
-import { siteTitle, siteDescription } from '@/lib/site';
+import profile from '@/data/profile.json';
+import { siteTitle, siteDescription, siteUrl } from '@/lib/site';
 
 const spaceGrotesk = localFont({
   src: '../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2',
@@ -64,8 +65,55 @@ const jetbrains = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: siteTitle,
   description: siteDescription,
+  applicationName: 'Saravanan Kalimuthu Portfolio',
+  authors: [{ name: profile.name, url: profile.links.linkedin }],
+  creator: profile.name,
+  publisher: profile.name,
+  keywords: [
+    profile.name,
+    profile.title,
+    'distributed systems',
+    'payments',
+    'platform reliability',
+    'backend engineering',
+    'PayPal',
+    'Java',
+    'Spring Boot',
+    'Kafka',
+    'Redis',
+    'React',
+    'Next.js',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: '/',
+    siteName: 'Saravanan Kalimuthu Portfolio',
+    locale: 'en_US',
+    type: 'profile',
+    images: [
+      {
+        url: '/personal/contact.png',
+        alt: `${profile.name} portrait`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/personal/contact.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
