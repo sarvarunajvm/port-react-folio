@@ -15,6 +15,24 @@ const moreOpenSourceProjects = projects.filter(
 );
 const stackTags = Array.from(new Set(projects.flatMap((project) => project.tags))).slice(0, 16);
 
+const proofSignals = [
+  {
+    label: 'Product proof',
+    value: `${featuredProjects.length} selected systems`,
+    detail: 'Each project includes delivery evidence, scope, and measurable outcomes.',
+  },
+  {
+    label: 'Platform depth',
+    value: `${stackTags.length} core tools`,
+    detail: 'Backend, frontend, data, IoT, automation, and production observability.',
+  },
+  {
+    label: 'Open source',
+    value: `${moreOpenSourceProjects.length} extra tools`,
+    detail: 'Additional libraries and utilities kept separate from the featured case studies.',
+  },
+];
+
 const capabilityCards = [
   {
     kicker: 'Architecture',
@@ -108,6 +126,16 @@ export default function Home() {
         ))}
       </section>
 
+      <section className="proof-rail" aria-label="Portfolio proof points">
+        {proofSignals.map((signal) => (
+          <article className="proof-card" key={signal.label}>
+            <span>{signal.label}</span>
+            <strong>{signal.value}</strong>
+            <p>{signal.detail}</p>
+          </article>
+        ))}
+      </section>
+
       <section className="section capability-section" id="focus" aria-label="Engineering capabilities">
         <div className="section-heading">
           <p className="eyebrow">Engineering focus</p>
@@ -159,7 +187,7 @@ export default function Home() {
             const links = projectLinks(project);
 
             return (
-              <article className="project-card" key={project.id}>
+              <article className="project-card" key={project.id} aria-label={`${project.title} case study`}>
                 <div className="project-card-header">
                   <div className="project-index">{String(index + 1).padStart(2, '0')}</div>
                   <span className="status-pill">{project.status}</span>
@@ -170,11 +198,14 @@ export default function Home() {
                   <p>{project.summary}</p>
                   <p className="project-description">{project.description}</p>
                 </div>
-                <ul>
-                  {project.impact.slice(0, 3).map((impact) => (
-                    <li key={impact}>{impact}</li>
+                <dl className="project-proof-grid" aria-label={`${project.title} outcomes`}>
+                  {project.impact.slice(0, 3).map((impact, impactIndex) => (
+                    <div key={impact}>
+                      <dt>Outcome {String(impactIndex + 1).padStart(2, '0')}</dt>
+                      <dd>{impact}</dd>
+                    </div>
                   ))}
-                </ul>
+                </dl>
                 <div className="tag-row">
                   {project.tags.slice(0, 4).map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -241,7 +272,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="opensource">
         <div className="section-heading">
           <p className="eyebrow">More open source</p>
           <BlurText as="h2" text="Additional tools and contributions." delay={105} direction="top" />
@@ -256,7 +287,7 @@ export default function Home() {
             const links = projectLinks(project);
 
             return (
-              <article key={project.id}>
+              <article key={project.id} aria-label={`${project.title} open-source project`}>
                 <span>{project.year}</span>
                 <BlurText as="h3" text={project.title} delay={62} direction="bottom" />
                 <p>{project.summary}</p>
