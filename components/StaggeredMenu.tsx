@@ -125,44 +125,39 @@ export default function StaggeredMenu({
     openTlRef.current?.kill();
     closeTweenRef.current?.kill();
 
-    const layers = preLayerElsRef.current;
     const itemLabels = Array.from(panel.querySelectorAll('.sm-panel-item-label')) as HTMLElement[];
     const itemsWithNumbers = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item')) as HTMLElement[];
     const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
     const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
     const offscreen = position === 'left' ? -100 : 100;
 
-    gsap.set(itemLabels, { yPercent: 135, rotate: 7 });
+    gsap.set(itemLabels, { yPercent: 22, opacity: 0 });
     gsap.set(itemsWithNumbers, { '--sm-num-opacity': 0 });
     gsap.set(socialTitle, { opacity: 0 });
-    gsap.set(socialLinks, { y: 20, opacity: 0 });
+    gsap.set(socialLinks, { y: 8, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
 
-    layers.forEach((layer, index) => {
-      tl.fromTo(layer, { xPercent: offscreen }, { xPercent: 0, duration: 0.52, ease: 'power4.out' }, index * 0.07);
-    });
-
-    const panelStart = layers.length ? (layers.length - 1) * 0.07 + 0.08 : 0;
-    tl.fromTo(panel, { xPercent: offscreen }, { xPercent: 0, duration: 0.68, ease: 'power4.out' }, panelStart);
+    const panelStart = 0;
+    tl.fromTo(panel, { xPercent: offscreen }, { xPercent: 0, duration: 0.34, ease: 'power2.out' }, panelStart);
 
     tl.to(
       itemLabels,
-      { yPercent: 0, rotate: 0, duration: 0.95, ease: 'power4.out', stagger: 0.085 },
-      panelStart + 0.16,
+      { yPercent: 0, opacity: 1, duration: 0.26, ease: 'power2.out', stagger: 0.035 },
+      panelStart + 0.08,
     );
 
     tl.to(
       itemsWithNumbers,
-      { '--sm-num-opacity': 1, duration: 0.48, ease: 'power2.out', stagger: 0.07 },
-      panelStart + 0.24,
+      { '--sm-num-opacity': 1, duration: 0.22, ease: 'power1.out', stagger: 0.025 },
+      panelStart + 0.1,
     );
 
-    tl.to(socialTitle, { opacity: 1, duration: 0.42, ease: 'power2.out' }, panelStart + 0.34);
+    tl.to(socialTitle, { opacity: 1, duration: 0.22, ease: 'power1.out' }, panelStart + 0.16);
     tl.to(
       socialLinks,
-      { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.07 },
-      panelStart + 0.38,
+      { y: 0, opacity: 1, duration: 0.24, ease: 'power2.out', stagger: 0.03 },
+      panelStart + 0.18,
     );
 
     openTlRef.current = tl;
@@ -177,20 +172,20 @@ export default function StaggeredMenu({
 
       iconTweenRef.current = gsap
         .timeline({ defaults: { ease: 'power3.out' } })
-        .to(plusHRef.current, { rotate: opening ? 45 : 0, duration: 0.34 }, 0)
-        .to(plusVRef.current, { rotate: opening ? -45 : 0, duration: 0.34 }, 0);
+        .to(plusHRef.current, { rotate: opening ? 45 : 0, duration: 0.2 }, 0)
+        .to(plusVRef.current, { rotate: opening ? -45 : 0, duration: 0.2 }, 0);
 
       textTweenRef.current = gsap.to(textInnerRef.current, {
         yPercent: opening ? -50 : 0,
-        duration: 0.42,
-        ease: 'power4.out',
+        duration: 0.22,
+        ease: 'power2.out',
       });
 
       if (changeMenuColorOnOpen) {
         colorTweenRef.current = gsap.to(toggleBtnRef.current, {
           color: opening ? openMenuButtonColor : menuButtonColor,
-          duration: 0.24,
-          ease: 'power2.out',
+          duration: 0.18,
+          ease: 'power1.out',
         });
       }
     },
@@ -228,10 +223,10 @@ export default function StaggeredMenu({
     if (!panel) return;
 
     const offscreen = position === 'left' ? -100 : 100;
-    closeTweenRef.current = gsap.to([...preLayerElsRef.current, panel], {
+    closeTweenRef.current = gsap.to(panel, {
       xPercent: offscreen,
-      duration: 0.34,
-      ease: 'power3.in',
+      duration: 0.22,
+      ease: 'power2.in',
       overwrite: 'auto',
       onComplete: () => {
         if (dialogRef.current?.open) {
@@ -285,12 +280,23 @@ export default function StaggeredMenu({
   useEffect(() => {
     if (!open) return;
 
+    const root = document.documentElement;
+    const body = document.body;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    root.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeMenu();
     };
 
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+    return () => {
+      root.style.overflow = previousRootOverflow;
+      body.style.overflow = previousBodyOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, [closeMenu, open]);
 
   const handleDialogCancel = useCallback(
@@ -331,7 +337,7 @@ export default function StaggeredMenu({
         </span>
       </button>
 
-      <dialog ref={dialogRef} className="sm-dialog" onCancel={handleDialogCancel}>
+      <dialog ref={dialogRef} className="sm-dialog" aria-label="Portfolio navigation" onCancel={handleDialogCancel}>
         <button className="sm-toggle sm-dialog-toggle" aria-label="Close menu" type="button" onClick={closeMenu}>
           <span className="sm-toggle-text-wrap" aria-hidden="true">
             <span className="sm-toggle-text-inner">

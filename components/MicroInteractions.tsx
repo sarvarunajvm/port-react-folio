@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 const surfaceSelector = [
   '.metric-card',
+  '.proof-card',
   '.capability-card',
   '.project-card',
   '.timeline-item',
@@ -12,11 +13,17 @@ const surfaceSelector = [
   '.contact-portrait',
 ].join(', ');
 
-const pressSelector = ['.button', '.project-links a', '.oss-links a', '.sm-socials-link'].join(', ');
+const pressSelector = [
+  '.button',
+  '.project-links a',
+  '.oss-links a',
+  '.sm-socials-link',
+].join(', ');
 
 const revealSelector = [
   '.section-heading',
   '.metric-card',
+  '.proof-card',
   '.capability-card',
   '.project-card',
   '.timeline-item',
@@ -195,15 +202,15 @@ export function MicroInteractions() {
       state.active = true;
       state.targetX = localX * 100;
       state.targetY = localY * 100;
-      state.targetRx = (0.5 - localY) * 3.8;
-      state.targetRy = (localX - 0.5) * -4.6;
+      state.targetRx = (0.5 - localY) * 1.2;
+      state.targetRy = (localX - 0.5) * -1.4;
     };
 
     const updatePressable = (pressable: HTMLElement, event: PointerEvent) => {
       const rect = pressable.getBoundingClientRect();
       const localX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
       const localY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
-      const strength = pressable.matches('.button') ? 4.8 : 3.2;
+      const strength = pressable.matches('.button') ? 1.8 : 1.2;
       const state = getPressState(pressable);
 
       state.active = true;
@@ -212,6 +219,8 @@ export function MicroInteractions() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+
       const target = event.target as Element | null;
       const nextSurface = target?.closest<HTMLElement>(surfaceSelector) ?? null;
       const nextPressable = target?.closest<HTMLElement>(pressSelector) ?? null;
@@ -232,6 +241,8 @@ export function MicroInteractions() {
     };
 
     const onPointerOut = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+
       const surface = (event.target as Element | null)?.closest<HTMLElement>(surfaceSelector);
       const nextTarget = event.relatedTarget as Element | null;
 

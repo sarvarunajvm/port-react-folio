@@ -208,6 +208,7 @@ export function ScrollScrubHero({ profile }: { profile: Profile }) {
                 { label: 'Focus', ariaLabel: 'View engineering focus', link: '#focus' },
                 { label: 'Work', ariaLabel: 'View selected work', link: '#work' },
                 { label: 'Experience', ariaLabel: 'View experience', link: '#experience' },
+                { label: 'Open Source', ariaLabel: 'View open source projects', link: '#opensource' },
                 { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
               ]}
               socialItems={[
